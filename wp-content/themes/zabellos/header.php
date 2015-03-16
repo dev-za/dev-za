@@ -11,6 +11,7 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script type="text/javascript" src="<?php echo get_template_directory_uri();?>/js/header_menu.js"></script>
     <![endif]-->
     <?php wp_head(); ?>
 </head>
@@ -18,7 +19,7 @@
     <header>
         <div class="container-fluid menu-container-fluid">
             <div class="row">
-                <a class="logo" href="index.html">
+                <a class="logo" href="<?php echo home_url()?>">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/logo.png" width="252" height="63" alt="" />
                 </a>
                 <!--navbar-->
@@ -41,11 +42,7 @@
                                 </div>
                             </div>
                             <div class="collapse navbar-collapse" id="top-1">
-                                <ul class="nav navbar-nav">
-                                    <li><a href="gallery.html">Gallery</a><span class="back-s"></span></li>
-                                    <li><a href="how-it-works.html">How it works</a><span class="back-s"></span></li>
-                                    <li><a href="help.html">Help</a></li>
-                                </ul>
+                                <?php wp_nav_menu(array('menu' => 'top-menu', 'menu_class' => 'nav navbar-nav', 'container' => false    )); ?>
                                 <p class="navbar-text navbar-right">
                                     <a href="profile.html" class="navbar-link">My profile<span class="back-link"></span></a>
                                 </p>

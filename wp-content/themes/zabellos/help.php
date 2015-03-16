@@ -6,14 +6,18 @@ get_header();?>
 			<div class="help-content col-xs-12">
 				<div class="row">
 					<div class="col-sm-7 col-md-8 customer-service">
-							<h2>Customer Service</h2>
-							<p>Zabellos aims to provide the highest level of shoe repair craftsmanship and customer 
-							service available. Our representatives are available to answer your questions, 
-							discuss your repair options, and resolve any issues you have with your order.</p>
-							<p>Call us, Monday - Friday 7AM - 6PM PST:<br/>(888) 556-0172</p>
-							<p>Submit a question or comment through our contact form<br/>
-							For repair advice, email us a photo of your shoes<br/>repairs@zabellos.com</p>
+                        <?php the_field('customer_service'); ?>
+
+                        <!--<h2>Customer Service</h2>
+                        <p>Zabellos aims to provide the highest level of shoe repair craftsmanship and customer
+                        service available. Our representatives are available to answer your questions,
+                        discuss your repair options, and resolve any issues you have with your order.</p>
+                        <p>Call us, Monday - Friday 7AM - 6PM PST:<br/>(888) 556-0172</p>
+                        <p>Submit a question or comment through our contact form<br/>
+                        For repair advice, email us a photo of your shoes<br/>repairs@zabellos.com</p>
+                    -->
 							<h2>Shipping Information</h2>
+
 							<h3>Free Shipping</h3>
 							<p>Zabellos offers free door-to-door shipping both to and from our workshop on all shoe repair orders.
 							We ship to any destination in the United States. All shoe accessories purchased at the 

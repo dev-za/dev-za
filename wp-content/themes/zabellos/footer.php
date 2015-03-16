@@ -25,8 +25,9 @@
         </footer>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <scri<?php echo get_template_directory_uri(); ?>/pt src="js/bootstrap.min.js"></script>
-        <scri<?php echo get_template_directory_uri(); ?>/pt src="js/script.js"></script>
+        <script src="<?php echo get_template_directory_uri(); ?>/js/validate.min.js"></script>
+        <script src="<?php echo get_template_directory_uri(); ?>/js/bootstrap.min.js"></script>
+        <script src="<?php echo get_template_directory_uri(); ?>/js/script.js"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="<?php echo get_template_directory_uri(); ?>/js/ie10-viewport-bug-workaround.js"></script>
     </body>

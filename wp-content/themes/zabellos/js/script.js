@@ -27,63 +27,63 @@ $(document).ready(function(){
 		$(".gallery-back").toggleClass("gallery-back-show");
 	
 	});
-	
+
 	$(".help-form").validate({
 		rules: {
 			name: {
-				required: true,
+				required: true
 			},
 			email: {
 				required: true,
-				email:true,
+				email:true
 			},
 			num: {
 				required: true,
-				number:true,
-				
+				number:true
+
 			},
 			subject: {
-				required: true,
+				required: true
 			},
 			message: {
 				required: true
 			}
 		}
-		
-		
+
+
 	});
 
 	$("#form-shipping").validate({
 		rules: {
 			checkoutaddressname: {
 				required: true,
-				minlength:6,
+				minlength:6
 			},
 			checkoutaddresslastname: {
 				required: true,
-				minlength:6,
+				minlength:6
 			},
 			checkoutaddressphone: {
 				required: true,
-				number:true,	
+				number:true
 			},
 			checkoutaddressaddress1: {
-				required: true,
+				required: true
 			},
 			checkoutaddressaddress2: {
-				required: true,
+				required: true
 			},
 			checkoutaddresscity: {
-				required: true,
+				required: true
 			},
 			checkoutaddressstate: {
-				required: true,
+				required: true
 			},
 			checkoutaddressaddress2: {
-				required: true,
+				required: true
 			},
 			checkoutaddressstate: {
-				required: true,
+				required: true
 			},
 			checkoutaddresszipcode: {
 				required: true
@@ -91,10 +91,10 @@ $(document).ready(function(){
 		},
 		messages: {
 			checkoutaddressname: {
-				minlength: 'Must be at least 6 characters.',
+				minlength: 'Must be at least 6 characters.'
 			},
 			checkoutaddresslastname: {
-				minlength: 'Must be at least 6 characters.',
+				minlength: 'Must be at least 6 characters.'
 			}
 		}
 		
@@ -104,7 +104,7 @@ $(document).ready(function(){
 	$("#bill-form").validate({
 		rules: {
 			same: {
-				required: true,
+				required: true
 			},
 			yes: {
 				required: true
@@ -112,10 +112,10 @@ $(document).ready(function(){
 		},
 		messages: {
 			checkoutaddressname: {
-				minlength: 'Must be at least 6 characters.',
+				minlength: 'Must be at least 6 characters.'
 			},
 			checkoutaddresslastname: {
-				minlength: 'Must be at least 6 characters.',
+				minlength: 'Must be at least 6 characters.'
 			},
 
 		}
@@ -128,25 +128,31 @@ $(document).ready(function(){
 		rules: {
 			myprofileemail: {
 				required: true,
-				email:true,
+				email:true
 			},
 			myprofilepassword: {
 				required: true,
-				minlength:6,
-			},
+				minlength:6
+			}
 		},
 		messages: {
 			myprofileemail: {
-				minlength: 'Must be at least 6 characters.',
+				minlength: 'Must be at least 6 characters.'
 			},
 			myprofilepassword: {
-				minlength: 'Must be at least 6 characters.',
-			},
+				minlength: 'Must be at least 6 characters.'
+			}
 
 		}
 		
 		
 	});
-	
-	
+    //Add menu separator
+    $('nav.navbar .navbar-nav   li').not(':last-child').each(function(){
+
+        $(this).append('<span class="back-s"></span>');
+    });
+
+
+
 });
