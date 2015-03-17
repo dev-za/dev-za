@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-type" content="text/html; charset=<?php bloginfo('charset'); ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php wp_title( '|', true, 'right' ); ?></title>
+    <title><?php wp_title('«', true, 'right'); ?> <?php bloginfo('name'); ?></title>
+    <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
     <link href="<?php echo get_template_directory_uri(); ?>/font/fonts.css" rel="stylesheet" type="text/css">
     <link href="<?php echo get_template_directory_uri(); ?>/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="<?php echo get_template_directory_uri(); ?>/css/style.css" rel="stylesheet" type="text/css">
@@ -15,7 +16,7 @@
     <![endif]-->
     <?php wp_head(); ?>
 </head>
-<body>
+<body <?php body_class(); ?>>
     <header>
         <div class="container-fluid menu-container-fluid">
             <div class="row">
@@ -42,7 +43,7 @@
                                 </div>
                             </div>
                             <div class="collapse navbar-collapse" id="top-1">
-                                <?php wp_nav_menu(array('menu' => 'top-menu', 'menu_class' => 'nav navbar-nav', 'container' => false    )); ?>
+                                <?php wp_nav_menu(array('menu' => 'top-menu', 'menu_class' => 'nav navbar-nav', 'container' => false)); ?>
                                 <p class="navbar-text navbar-right">
                                     <a href="profile.html" class="navbar-link">My profile<span class="back-link"></span></a>
                                 </p>

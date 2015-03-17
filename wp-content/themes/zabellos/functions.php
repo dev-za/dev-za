@@ -18,3 +18,5 @@ function my_wp_nav_menu_args( $args = '' ){
     $args['container'] = false;
     return $args;
 }
+
+remove_filter('the_content', 'wpautop');
