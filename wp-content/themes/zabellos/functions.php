@@ -1,4 +1,6 @@
 <?php
+include_once('acf-repeater/acf-repeater.php');
+
 //Add menu support
 if (function_exists('add_theme_support')) {
     add_theme_support('menus');

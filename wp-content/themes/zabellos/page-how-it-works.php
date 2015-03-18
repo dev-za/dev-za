@@ -7,9 +7,12 @@ get_header(); ?>
                 <?php the_field('page_title');?>
                 <div class="col-sm-12">
                     <div class="how-back-mobile">
-                        <?php get_field('image1');?>
-                        <img src="<?php the_field('image1')?>" alt="" width="871" height="279" class="img-responsive"/>
-                        <img src="<?php the_field('image2')?>" alt="" width="871" height="236" class="img-responsive" />
+                        <?php global $postID; $postFields = get_fields($postID);?>
+                        <?php if($postFields && isset($postFields['content_images'])){?>
+                            <?php foreach($postFields['content_images'] as $index=>$image) {?>
+                                <img src="<?php echo $image['image']['url'];?>" alt="" width="871" class="img-responsive"/>
+                            <?php } ?>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="col-sm-12">

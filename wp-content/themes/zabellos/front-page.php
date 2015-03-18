@@ -8,9 +8,6 @@ get_header();
 <div class="home-content">
     <div class="container">
         <div class="row">
-                <!--<h1>Expert Shoe Repairs Delivered Straight to your Home <br/>
-                    <small>From $79. Includes free Boxes and Shipping.</small>
-                </h1>-->
             <?php the_field('title_block')?>
             <div class="col-xs-12">
                 <div class="row">

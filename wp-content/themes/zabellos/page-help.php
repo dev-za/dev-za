@@ -20,7 +20,7 @@ get_header(); ?>
                         <?php endwhile; ?>
                     </div>
                     <div class="col-sm-5 col-md-4">
-                        <div class="row help-contancts ">
+                        <div class="row help-contancts">
                             <?php get_sidebar();?>
                         </div>
                     </div>

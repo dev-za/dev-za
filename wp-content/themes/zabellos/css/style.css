@@ -143,8 +143,10 @@ button.navbar-toggle {
 		text-transform:uppercase;
 		font-family: 'robotomedium', sans-serif;
 		font-size:13px;
-		padding-left:25px;
-		padding-right:25px;
+		/*padding-left:25px;
+		padding-right:25px;*/
+        padding-left:23px;
+		padding-right:23px;
 		float:left;
 		letter-spacing:.2em;
 		height:auto;
@@ -347,7 +349,8 @@ footer.account-footer {
 }
 .footer-nav  li{
 	float:left;
-	margin-right:50px;
+	/*margin-right:50px;*/
+	margin-right:25px;
 }
 .footer-nav  li:last-child {
 	margin-right:0px;

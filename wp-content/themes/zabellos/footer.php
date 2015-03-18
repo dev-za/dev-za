@@ -2,12 +2,7 @@
             <div class="container">
                 <div class="row">
                     <div class="clearfix">
-                        <ul class="list-unstyled footer-nav">
-                            <li><a href="shoe-care.html">Shoe care</a></li>
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="terms.html">Terms of use</a></li>
-                        </ul>
+                        <?php wp_nav_menu(array('menu' => 'top-menu', 'menu_class' => 'list-unstyled footer-nav', 'container' => false)); ?>
                         <div class="footer-social">
                             <a href="https://twitter.com" id="tw"></a>
                             <a href="https://facebook.com" id="f"></a>
