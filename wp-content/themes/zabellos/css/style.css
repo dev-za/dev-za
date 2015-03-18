@@ -342,15 +342,15 @@ footer.account-footer {
 	footer.gallery-footer {padding-top:15px;}
 }
 .footer-nav {
-	width:450px;
+	/*width:450px;*/
 	margin-left:auto;
 	margin-right:auto;
 	overflow:hidden;
 }
 .footer-nav  li{
 	float:left;
-	/*margin-right:50px;*/
-	margin-right:25px;
+	margin-right:50px;
+
 }
 .footer-nav  li:last-child {
 	margin-right:0px;
