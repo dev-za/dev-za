@@ -1,7 +1,4 @@
 <?php
-/**
- * The main template file
- */
 get_header();
 ?>
 
@@ -26,6 +23,7 @@ get_header();
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>

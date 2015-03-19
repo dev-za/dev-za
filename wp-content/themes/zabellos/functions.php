@@ -21,4 +21,17 @@ function my_wp_nav_menu_args( $args = '' ){
     return $args;
 }
 
+//Add thumbnails support
+add_theme_support( 'post-thumbnails', array('post') );
+
+
+//Tune up excerpt
+function new_excerpt_more( $more ) {    return '...'; }
+add_filter('excerpt_more', 'new_excerpt_more');
+
+function custom_excerpt_length( $length ) { return 500; }
+add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+
+
+
 remove_filter('the_content', 'wpautop');
