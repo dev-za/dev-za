@@ -33,5 +33,66 @@ function custom_excerpt_length( $length ) { return 500; }
 add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 
 
+//Featured content
+/*add_theme_support( 'featured-content', array(
+    'featured_content_filter' => 'twentytwelve_get_featured_content',
+));
+function twentytwelve_get_featured_content( $num = 1 ) {
+    global $featured;
+    $featured = apply_filters( 'twentytwelve_featured_content', array() );
+    var_dump('featured', $featured);
+    if ( is_array( $featured ) || $num >= count( $featured ) )
+        return true;
+
+    return false;
+}*/
+
+// Add support for featured content.
+add_theme_support( 'featured-content', array(
+    'featured_content_filter' => 'zabellos_get_featured_posts',
+    'max_posts' => 6,
+) );
+
+
+/**
+ * Getter function for Featured Content Plugin.
+ *
+ * @since Twenty Fourteen 1.0
+ *
+ * @return array An array of WP_Post objects.
+ */
+function zabellos_get_featured_posts() {
+    /**
+     * Filter the featured posts to return in Twenty Fourteen.
+     *
+     * @since Twenty Fourteen 1.0
+     *
+     * @param array|bool $posts Array of featured posts, otherwise false.
+     */
+    return apply_filters( 'zabellos_get_featured_posts', array() );
+}
+
+/**
+ * A helper conditional function that returns a boolean value.
+ *
+ * @since Twenty Fourteen 1.0
+ *
+ * @return bool Whether there are featured posts.
+ */
+function zabellos_has_featured_posts() {
+    return ! is_paged() && (bool) zabellos_get_featured_posts();
+}
+
+/*
+ * Add Featured Content functionality.
+ *
+ * To overwrite in a plugin, define your own Featured_Content class on or
+ * before the 'setup_theme' hook.
+ */
+if ( ! class_exists( 'Featured_Content' ) && 'plugins.php' !== $GLOBALS['pagenow'] ) {
+    require get_template_directory() . '/inc/featured-content.php';
+}
+
+//End Featured content
 
 remove_filter('the_content', 'wpautop');
