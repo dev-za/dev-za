@@ -1479,6 +1479,10 @@ body.modal-open {
 	margin-left:20px;
 }
 
-
+div#inifiniteLoader{
+    z-index: 1000;
+    display:none;
+    text-align: center;
+}
 
 

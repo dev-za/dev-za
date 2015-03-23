@@ -17,8 +17,8 @@
             <a href="http://www.sharethis.com/" class="c"></a>
         </div>
         <?php $commentsNumber = get_comments_number(get_the_ID());?>
-            <?php if ( comments_open() && ! is_single() && $commentsNumber) : ?>
-            <a class="comment pull-left"><span></span><?php echo $commentsNumber?>&nbsp
+        <?php if ( comments_open() && ! is_single()) : ?>
+            <a class="comment pull-left" href="<?php comments_link(); ?>"><span></span><?php echo $commentsNumber?>&nbsp
                 <?php comments_number( 'comments', 'comment', 'comments' ); ?>
             </a>
         <?php endif; // comments_open() ?>

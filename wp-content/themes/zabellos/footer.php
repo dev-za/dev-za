@@ -20,6 +20,41 @@
         </footer>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type="text/javascript">
+
+            $(document).ready(function($) {
+                var count = 2;
+                var total = <?php echo $wp_query->max_num_pages; ?>;
+                $(window).scroll(function(){
+                    if  ($(window).scrollTop() == $(document).height() - $(window).height()){
+                        if (count > total){
+                            return false;
+                        }else{
+                            loadArticle(count);
+
+                        }
+                        count++;
+                    }
+                });
+
+                function loadArticle(pageNumber){
+                    $('div#inifiniteLoader').show();
+                    $.ajax({
+                        url: "<?php bloginfo('wpurl') ?>/wp-admin/admin-ajax.php",
+                        type:'POST',
+                        data: "action=infinite_scroll&page_no="+ pageNumber + '&loop_file=loop',
+                        success: function(html){
+                            $('div#inifiniteLoader').hide();
+                            $("#post-main").append(html);    // This will be the div where our content will be loaded
+                        }
+                    });
+                    return false;
+                }
+
+            });
+
+
+        </script>
         <script src="<?php echo get_template_directory_uri(); ?>/js/validate.min.js"></script>
         <script src="<?php echo get_template_directory_uri(); ?>/js/bootstrap.min.js"></script>
         <script src="<?php echo get_template_directory_uri(); ?>/js/script.js"></script>

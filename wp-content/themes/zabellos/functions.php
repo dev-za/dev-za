@@ -34,18 +34,6 @@ add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 
 
 //Featured content
-/*add_theme_support( 'featured-content', array(
-    'featured_content_filter' => 'twentytwelve_get_featured_content',
-));
-function twentytwelve_get_featured_content( $num = 1 ) {
-    global $featured;
-    $featured = apply_filters( 'twentytwelve_featured_content', array() );
-    var_dump('featured', $featured);
-    if ( is_array( $featured ) || $num >= count( $featured ) )
-        return true;
-
-    return false;
-}*/
 
 // Add support for featured content.
 add_theme_support( 'featured-content', array(
@@ -94,5 +82,21 @@ if ( ! class_exists( 'Featured_Content' ) && 'plugins.php' !== $GLOBALS['pagenow
 }
 
 //End Featured content
+
+
+function wp_infinitepaginate(){
+    $loopFile        = $_POST['loop_file'];
+    $paged           = $_POST['page_no'];
+    $posts_per_page  = get_option('posts_per_page');
+
+    # Load the posts
+    query_posts(array('paged' => $paged ));
+    get_template_part( $loopFile );
+
+    exit;
+}
+add_action('wp_ajax_infinite_scroll', 'wp_infinitepaginate');           // for logged in user
+add_action('wp_ajax_nopriv_infinite_scroll', 'wp_infinitepaginate');    // if user not logged in
+
 
 remove_filter('the_content', 'wpautop');
