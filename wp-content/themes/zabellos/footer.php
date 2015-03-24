@@ -20,11 +20,27 @@
         </footer>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.cookie.js"></script>
         <script type="text/javascript">
 
             $(document).ready(function($) {
-                var count = 2;
+                var loadedBlogPages = Number($.cookie('loadedBlogPages'));
+                var postsPerPage;
+                var count = 1;
+
+                if(loadedBlogPages){
+                    var postsPerPageOpt = <?php echo get_option('posts_per_page')?>;
+                    postsPerPage = postsPerPageOpt * loadedBlogPages;
+                    loadArticle(count, postsPerPage);
+                    count = loadedBlogPages + 1;
+                }
+                else{
+                    loadArticle(count);
+                    count++;
+                }
+
                 var total = <?php echo $wp_query->max_num_pages; ?>;
+
                 $(window).scroll(function(){
                     if  ($(window).scrollTop() == $(document).height() - $(window).height()){
                         if (count > total){
@@ -32,17 +48,18 @@
                         }else{
                             loadArticle(count);
 
+                            $.cookie('loadedBlogPages', count);
                         }
                         count++;
                     }
                 });
 
-                function loadArticle(pageNumber){
+                function loadArticle(pageNumber, postsPerPage){
                     $('div#inifiniteLoader').show();
                     $.ajax({
                         url: "<?php bloginfo('wpurl') ?>/wp-admin/admin-ajax.php",
                         type:'POST',
-                        data: "action=infinite_scroll&page_no="+ pageNumber + '&loop_file=loop',
+                        data: "action=infinite_scroll&page_no="+ pageNumber + '&loop_file=loop&posts_per_page='+postsPerPage,
                         success: function(html){
                             $('div#inifiniteLoader').hide();
                             $("#post-main").append(html);    // This will be the div where our content will be loaded

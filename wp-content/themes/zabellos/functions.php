@@ -87,10 +87,10 @@ if ( ! class_exists( 'Featured_Content' ) && 'plugins.php' !== $GLOBALS['pagenow
 function wp_infinitepaginate(){
     $loopFile        = $_POST['loop_file'];
     $paged           = $_POST['page_no'];
-    $posts_per_page  = get_option('posts_per_page');
-
+    $posts_per_page  = (isset($_POST['posts_per_page']) && intval($_POST['posts_per_page']))?intval($_POST['posts_per_page']):get_option('posts_per_page');
+//    var_dump($posts_per_page);
     # Load the posts
-    query_posts(array('paged' => $paged ));
+    query_posts(array('paged' => $paged , 'posts_per_page' => $posts_per_page));
     get_template_part( $loopFile );
 
     exit;
