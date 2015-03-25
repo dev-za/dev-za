@@ -10,11 +10,10 @@
     <hr/>
     <div class="blog-post-link clearfix">
         <div class="post-social pull-left">
-            <a href="https://twitter.com" class="tw"></a>
-            <a href="https://www.pinterest.com" class="p"></a>
-            <a href="https://facebook.com" class="f"></a>
-            <a href="https://mail.ru" class="mail"></a>
-            <a href="http://www.sharethis.com/" class="c"></a>
+            <span class='st_pinterest_large' st_title='<?php the_title(); ?>' st_url='<?php the_permalink(); ?>'></span>
+            <span class='st_facebook_large' st_title='<?php the_title(); ?>' st_url='<?php the_permalink(); ?>'></span>
+            <span class='st_email_large' st_title='<?php the_title(); ?>' st_url='<?php the_permalink(); ?>'></span>
+            <span class='st_sharethis_large' st_title='<?php the_title(); ?>' st_url='<?php the_permalink(); ?>'></span>
         </div>
         <?php $commentsNumber = get_comments_number(get_the_ID());?>
         <?php if ( comments_open() && ! is_single()) : ?>

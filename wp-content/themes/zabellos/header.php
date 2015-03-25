@@ -13,6 +13,10 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <!--social networks-->
+    <script charset="utf-8" type="text/javascript">var switchTo5x=true;</script>
+    <script charset="utf-8" type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script charset="utf-8" type="text/javascript">stLight.options({"publisher":"wp.27ff5b1d-2652-434c-afbd-1b54c169302d"});var st_type="wordpress4.1.1";</script>
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
