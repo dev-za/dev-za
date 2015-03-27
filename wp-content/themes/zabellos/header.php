@@ -20,6 +20,7 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
+    <div class="wrapper">
     <header>
         <div class="container-fluid menu-container-fluid">
             <div class="row">
