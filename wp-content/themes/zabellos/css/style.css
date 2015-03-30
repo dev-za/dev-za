@@ -1481,7 +1481,7 @@ body.modal-open {
 
 div#inifiniteLoader{
     z-index: 1000;
-    display:none;
+    /*display:none;*/
     text-align: center;
 }
 
