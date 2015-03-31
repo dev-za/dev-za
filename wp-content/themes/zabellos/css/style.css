@@ -709,8 +709,12 @@ a.comment span {
 	border-bottom:none;
 }
 .panel-default > .panel-heading + .panel-collapse > .panel-body {
-	border-top-color:#fffffff;
+	border-top-color:#ffffff;
 }
+.panel-default > .panel-heading .title-highlighted {
+    color: #82161b;
+}
+
 .help-content .panel-default > .panel-heading {
 	background:#f7f6f4;
 }

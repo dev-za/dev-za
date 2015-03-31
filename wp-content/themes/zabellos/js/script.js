@@ -147,12 +147,15 @@ $(document).ready(function(){
 		
 		
 	});
+
+
     //Add menu separator
     $('nav.navbar .navbar-nav   li').not(':last-child').each(function(){
 
         $(this).append('<span class="back-s"></span>');
     });
 
-
+    //Highlight collapsible panel title
+    $('.panel-title a').click(function(){$(this).toggleClass('title-highlighted')});
 
 });
