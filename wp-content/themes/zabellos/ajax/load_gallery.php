@@ -2,7 +2,7 @@
 require('../../../../wp-load.php');
 $itemsPerPage = 6;
 $postID = $_REQUEST['postID'];
-$loadedItems = ($_REQUEST['loadedItems'])?intval($_POST['loadedItems']):0;
+$loadedItems = ($_REQUEST['loadedItems'])?intval($_REQUEST['loadedItems']):0;
 
 
 if($loadedItems)
