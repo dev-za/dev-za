@@ -65,7 +65,7 @@ foreach($galleryItems as $index => $item) {
 $response = new StdClass();
 $response->thumbnails = $thumbnails;
 $response->popups = $popups;
-$response->loadedItems = count($galleryItems);
+$response->loadedItems = count($galleryItems) + $loadedItems;
 $response->totalItems = $totalItems;
 header('Content-Type: application/json');
 echo json_encode($response);

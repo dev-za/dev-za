@@ -25,8 +25,11 @@
                     $('div#inifiniteLoader').hide();
                     $('.gallery-content .container .row').append(response.thumbnails);
                     $('.popup').append(response.popups);
-                    if(response.loadedItems)
+                    if(response.loadedItems){
                         window.loadedItems = response.loadedItems;
+                        console.log(window.loadedItems)
+                    }
+
 
                     window.totalItems = response.totalItems;
                 }
