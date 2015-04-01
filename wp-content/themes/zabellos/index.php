@@ -5,6 +5,7 @@
             var loadedBlogPages = Number($.cookie('loadedBlogPages'));
             var postsPerPage;
             var count = 1;
+            var isLoading = false;
 
             if(loadedBlogPages){
                 var postsPerPageOpt = <?php echo get_option('posts_per_page')?>;
@@ -20,7 +21,7 @@
             var total = <?php echo $wp_query->max_num_pages; ?>;
 
             $(window).scroll(function(){
-                if  ($(window).scrollTop() == $(document).height() - $(window).height()){
+                if  ($(window).scrollTop() == $(document).height() - $(window).height() && !isLoading){
                     if (count > total){
                         return false;
                     }else{
@@ -34,6 +35,7 @@
 
             function loadArticle(pageNumber, postsPerPage){
                 $('div#inifiniteLoader').show();
+                isLoading = true;
                 $.ajax({
                     url: "<?php bloginfo('wpurl') ?>/wp-admin/admin-ajax.php",
                     type:'POST',
@@ -41,6 +43,7 @@
                     success: function(html){
                         $('div#inifiniteLoader').hide();
                         $("#post-main").append(html);    // This will be the div where our content will be loaded
+                        isLoading = false;
                     }
                 });
                 return false;
