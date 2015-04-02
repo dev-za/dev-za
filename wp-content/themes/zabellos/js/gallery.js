@@ -1,4 +1,9 @@
 $(document).ready(function($) {
+
+    $('.modal-dialog').on('hidden.bs.modal', function () {
+        alert(123);
+    });
+
     window.loadedItems = 0;
     window.totalItems = 0;
     window.isLoading = false;
@@ -48,13 +53,13 @@ $(document).ready(function($) {
                                 '<div class="modal-dialog">' +
                                     '<div class="modal-content">' +
                                         '<div class="button-close">' +
-                                            '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
+                                            '<button onclick="callPlayer(\'videoFrame'+dataTargetNum+'\', \'stopVideo\')" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
                                         '</div>' +
                                         '<div class="modal-body">' +
-                                            '<div class="img-popup">';
-                        console.log(item.video_frame);
-                        if(item.video_frame){
-                            popups += item.video_frame;
+                                            '<div class="img-popup" id="videoFrame'+dataTargetNum+'">';
+
+                        if(item.isVideo === true){
+                            popups += '<iframe width="500" height="360" frameborder="0" title="YouTube video player" type="text/html" src="http://www.youtube.com/embed/'+item.video_id+'?enablejsapi=1"></iframe>';
                         }
                         else{
                             popups += '<img src="'+item.url+'" alt="'+item.alt+'" class="img-responsive" />';
@@ -103,3 +108,20 @@ $(document).ready(function($) {
 
     }
 });
+
+function callPlayer(frame_id, func, args) {
+    if (window.jQuery && frame_id instanceof jQuery) frame_id = frame_id.get(0).id;
+    var iframe = document.getElementById(frame_id);
+    if (iframe && iframe.tagName.toUpperCase() != 'IFRAME') {
+        iframe = iframe.getElementsByTagName('iframe')[0];
+    }
+    if (iframe) {
+        // Frame exists,
+        iframe.contentWindow.postMessage(JSON.stringify({
+            "event": "command",
+            "func": func,
+            "args": args || [],
+            "id": frame_id
+        }), "*");
+    }
+}

@@ -24,20 +24,22 @@ $popups = '';*/
 $thumbnails = Array();
 $popups = Array();
 $count = 0;
+$isVideo = false;
 foreach($galleryItems as $index => $item) {
 
     if(!$item['gallery_item'])
         continue;
-
     $count++;
-//    var_dump($item);
-    $thumbnail = new StdClass();
-    if(!empty($item['video_frame'])){
-        $thumbnail->isVideo = true;
+
+    if($item['item_type'] == 'video'){
+        $isVideo = true;
     }
     else{
-        $thumbnail->isVideo = false;
+        $isVideo = false;
     }
+
+    $thumbnail = new StdClass();
+    $thumbnail->isVideo = $isVideo;
     $thumbnail->url = $item['gallery_item']['url'];
     $thumbnail->alt = $item['gallery_item']['alt'];
 
@@ -47,7 +49,8 @@ foreach($galleryItems as $index => $item) {
     $popup->url = $item['gallery_item']['url'];
     $popup->alt = $item['gallery_item']['alt'];
     $popup->comments = $item['comments_repeater'];
-    $popup->video_frame = htmlspecialchars_decode($item['video_frame']);
+    $popup->isVideo = $isVideo;
+    $popup->video_id = htmlspecialchars_decode($item['video_id']);
 
     array_push($popups, $popup);
 }
