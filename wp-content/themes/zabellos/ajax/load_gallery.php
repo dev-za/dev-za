@@ -14,11 +14,11 @@ $totalItems = count($galleryFields['gallery_items']);
 
 //Show new added first
 $galleryItems = array_reverse($galleryFields['gallery_items']);
-
+//var_dump(count($galleryItems));
 //var_dump($galleryItems);
 
 $galleryItems = array_slice($galleryItems, $itemsFrom, $itemsPerPage);
-
+//var_dump($galleryItems);
 /*$thumbnails = '';
 $popups = '';*/
 $thumbnails = Array();

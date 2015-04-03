@@ -4,7 +4,7 @@ html, body {
 	font-size:14px;
 	color:#000000;
 	line-height: 1.6;
-	overflow:auto;
+	/*overflow:auto;*/
 	min-height:100%;
 }
 .wrapper {position:relative; height:100%;}
@@ -1473,6 +1473,7 @@ select.form-control  {
 }
 body.modal-open {
 	padding-right:0 !important;
+    overflow: hidden;
 }
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
 	body.modal-open {
@@ -1489,4 +1490,7 @@ div#inifiniteLoader{
     text-align: center;
 }
 
-
+a.video-icon {
+    border: none;
+    margin-top: -41px;
+}

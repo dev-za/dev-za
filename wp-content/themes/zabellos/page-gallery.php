@@ -1,4 +1,5 @@
 <?php get_header(); ?>
+<script src="<?php bloginfo('template_directory'); ?>/js/moment.min.js"></script>
 <script src="<?php bloginfo('template_directory'); ?>/js/gallery.js"></script>
     <!--gallery-content-->
     <div class="gallery-content">
