@@ -19,11 +19,15 @@ get_header();
                             <ul class='slidewrapper' data-current=0>
                                 <?php
                                 if($postFields && isset($postFields['images'])){
-                                    foreach($postFields['images'] as $index=>$image) {?>
-                                        <li class='slide first'>
-                                            <img src="<?php echo $image['image']['url'];?>" alt="" width="<?php echo $image['image']['width'];?>" height="<?php echo $image['image']['height'];?>" class="img-responsive"/>
-                                        </li>
-                                    <?php
+                                    for($i=count($postFields['images'])-1; $i >= 0; $i--) {
+                                        $image = $postFields['images'][$i]['image'];
+
+                                        if($image){ ?>
+                                            <li class='slide'>
+                                                <img src="<?php echo $image['url'];?>" alt="" width="<?php echo $image['width'];?>" height="<?php echo $image['height'];?>" class="img-responsive"/>
+                                            </li>
+                                        <?php
+                                        }
                                     }
                                 }
                                 ?>
