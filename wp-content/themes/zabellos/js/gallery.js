@@ -40,7 +40,7 @@ $(document).ready(function($) {
                         var videoIconClass = '';
                         console.log(item.isVideo);
                         if(item.isVideo){
-                            iconText = '<img src="/wp-content/themes/zabellos/images/gallery/playVideo.png">';
+                            iconText = '<img src="/wp-content/themes/zabellos/images/gallery/icon_play.png">';
                             videoIconClass = 'video-icon';
                         }
 

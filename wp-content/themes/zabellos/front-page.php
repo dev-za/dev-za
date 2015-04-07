@@ -23,9 +23,10 @@ get_header();
                                         $image = $postFields['images'][$i]['image'];
 
                                         if($image){ ?>
-                                            <li class='slide'>
-                                                <img src="<?php echo $image['url'];?>" alt="" width="<?php echo $image['width'];?>" height="<?php echo $image['height'];?>" class="img-responsive"/>
-                                            </li>
+                                            <li class="slide" style="background-image: url(<?php echo $image['url'];?>)"></li>
+                                            <!--<li class='slide'>
+                                                <img src="<?php /*echo $image['url'];*/?>" alt="" width="<?php /*echo $image['width'];*/?>" height="<?php /*echo $image['height'];*/?>" class="img-responsive"/>
+                                            </li>-->
                                         <?php
                                         }
                                     }
