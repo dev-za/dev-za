@@ -296,7 +296,8 @@ button.navbar-toggle {
 
 .slider-viewport{
     margin: 0 auto;
-    width: 984px;
+    /*width: 984px;*/
+    width: 938px;
     height: 658px;
     overflow: hidden;
     position: relative;
@@ -310,8 +311,10 @@ button.navbar-toggle {
     padding: 0;
 }
 .slide{
-    width: 984px;
-    height: 658px;
+    /*width: 984px;*/
+    /*height: 658px;*/
+    width: 938px;
+    height: 627px;
     /*float: left;*/
     list-style: none;
     margin: 0;

@@ -1,8 +1,9 @@
 $(function() {
-    var slideWidth = 984;
+    //var slideWidth = 984;
+    var slideWidth = 938;
 
     //top slide
-    $('li.slide:nth-child(2)').css('margin-top', -658);
+    $('li.slide:nth-child(2)').css('margin-top', -627);
 
     var shift = 0;
     var startPos = $('.home-slider-pagination').offset();
