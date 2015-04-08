@@ -20,8 +20,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <?php wp_head(); ?>
 </head>
-<body <?php body_class(); ?>>
-    <div class="wrapper">
+<body <?php body_class();?>>
+<div class="wrapper <?php echo($_SERVER['REQUEST_URI'] == '/login/')?'bg-profile':''?>">
     <header>
         <div class="container-fluid menu-container-fluid">
             <div class="row">
@@ -50,7 +50,12 @@
                             <div class="collapse navbar-collapse" id="top-1">
                                 <?php wp_nav_menu(array('menu' => 'top-menu', 'menu_class' => 'nav navbar-nav', 'container' => false)); ?>
                                 <p class="navbar-text navbar-right">
-                                    <a href="profile.html" class="navbar-link">My profile<span class="back-link"></span></a>
+                                    <?php if(!is_user_logged_in()):?>
+                                        <a href="<?php echo home_url()?>/login" class="navbar-link">LOG IN<span class="back-link"></span></a>
+                                    <?php else:?>
+                                        <a href="<?php echo wp_logout_url()?>" class="navbar-link">LOG OUT<span class="back-link"></span></a>
+                                    <?php endif;?>
+
                                 </p>
                             </div>
                         </div>
