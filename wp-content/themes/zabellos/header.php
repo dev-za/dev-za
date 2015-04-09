@@ -21,7 +21,17 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class();?>>
-<div class="wrapper <?php echo($_SERVER['REQUEST_URI'] == '/login/' || $_SERVER['REQUEST_URI'] == '/forgot-password/')?'bg-profile':''?>">
+<?php
+    //Add background class for pages login and forgot-password
+    $arr = explode('/', $_SERVER['REQUEST_URI']);
+    if(!empty($arr) && isset($arr[1]) && ($arr[1] == 'login' || $arr[1] == 'forgot-password/')){
+        $wrapperClass = 'bg-profile';
+    }
+    else{
+        $wrapperClass = '';
+    }
+?>
+<div class="wrapper <?php echo $wrapperClass;?>">
     <header>
         <div class="container-fluid menu-container-fluid">
             <div class="row">
