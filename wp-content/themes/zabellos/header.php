@@ -21,7 +21,7 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class();?>>
-<div class="wrapper <?php echo($_SERVER['REQUEST_URI'] == '/login/')?'bg-profile':''?>">
+<div class="wrapper <?php echo($_SERVER['REQUEST_URI'] == '/login/' || $_SERVER['REQUEST_URI'] == '/forgot-password/')?'bg-profile':''?>">
     <header>
         <div class="container-fluid menu-container-fluid">
             <div class="row">
