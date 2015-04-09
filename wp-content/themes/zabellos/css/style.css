@@ -327,8 +327,8 @@ button.navbar-toggle {
 	text-transform:uppercase;
 	border:none;
 	font-size:18px;
-	padding-left:50px;
-	padding-right:50px;
+	/*padding-left:50px;
+	padding-right:50px;*/
 	font-family: 'robotomedium', sans-serif;
 }
 

@@ -157,6 +157,7 @@ add_filter('gettext', function($text){
 
 //End email login
 
+
 /**
  * Redirect user after successful login.
  *
@@ -181,11 +182,58 @@ function my_login_redirect( $redirect_to, $request, $user ) {
         return $redirect_to;
     }
 }
-
 add_filter( 'login_redirect', 'my_login_redirect', 10, 3 );
 
-add_action('wp_logout','go_home');
+
+//logout redirect
 function go_home(){
     wp_redirect( home_url() );
     exit();
 }
+add_action('wp_logout','go_home');
+
+//login failed redirect
+function my_front_end_login_fail( $username ) {
+
+    $referrerUrl = $_SERVER['HTTP_REFERER'];  // where did the post submission come from?
+    //trim GET parameters
+    $arr = explode('/', $referrerUrl);
+    array_pop($arr);
+    $redirectUrl = implode('/', $arr);
+    // if there's a valid referrer, and it's not the default log-in screen
+    if ( !empty($redirectUrl) && !strstr($redirectUrl,'wp-login') && !strstr($redirectUrl,'wp-admin') ) {
+        wp_redirect( $redirectUrl . '?login=failed' );  // let's append some information (login=failed) to the URL for the theme to use
+        exit;
+    }
+}
+add_action( 'wp_login_failed', 'my_front_end_login_fail' );  // hook failed login
+
+//forgot password redirect
+function wpse_lost_password_redirect() {
+
+    // Check if have submitted
+    $confirm = ( isset($_GET['checkemail'] ) ? $_GET['checkemail'] : '' );
+
+    if( $confirm ) {
+        wp_redirect( home_url() . '/login' . '?checkemail=confirm' );
+        exit;
+    }
+}
+add_action('login_headerurl', 'wpse_lost_password_redirect');
+
+
+//Display username
+function personal_message_when_logged_in() {
+
+    if ( is_user_logged_in() ) :
+
+        $current_user = wp_get_current_user();
+
+        echo '' . $current_user->user_firstname ;
+
+    else :
+        echo '';
+
+    endif;
+}
+add_action( 'loop_start', 'personal_message_when_logged_in' );

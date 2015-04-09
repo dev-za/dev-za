@@ -49,14 +49,29 @@
                             </div>
                             <div class="collapse navbar-collapse" id="top-1">
                                 <?php wp_nav_menu(array('menu' => 'top-menu', 'menu_class' => 'nav navbar-nav', 'container' => false)); ?>
+                                <?php if(!is_user_logged_in()):?>
                                 <p class="navbar-text navbar-right">
-                                    <?php if(!is_user_logged_in()):?>
+
                                         <a href="<?php echo home_url()?>/login" class="navbar-link">LOG IN<span class="back-link"></span></a>
-                                    <?php else:?>
-                                        <a href="<?php echo wp_logout_url()?>" class="navbar-link">LOG OUT<span class="back-link"></span></a>
-                                    <?php endif;?>
+
+
+
 
                                 </p>
+                                <?php else:
+                                    $current_user = wp_get_current_user();
+                                    ?>
+                                <div class="logout-menu">
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li>
+                                            <a href="account.html"><?php echo $current_user->user_firstname?></a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo wp_logout_url()?>" class="color-gray">LOG OUT</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <?php endif;?>
                             </div>
                         </div>
                     </div>
