@@ -53,7 +53,7 @@ $(document).ready(function(){
 		$(".gallery-back").toggleClass("gallery-back-show");
 	
 	});
-    if($('.help-form')){
+    if($('.help-form').length > 0){
         $(".help-form").validate({
             rules: {
                 name: {
@@ -80,101 +80,107 @@ $(document).ready(function(){
         });
     }
 
+    if($("#form-shipping").length > 0){
+        $("#form-shipping").validate({
+            rules: {
+                checkoutaddressname: {
+                    required: true,
+                    minlength:6
+                },
+                checkoutaddresslastname: {
+                    required: true,
+                    minlength:6
+                },
+                checkoutaddressphone: {
+                    required: true,
+                    number:true
+                },
+                checkoutaddressaddress1: {
+                    required: true
+                },
+                checkoutaddressaddress2: {
+                    required: true
+                },
+                checkoutaddresscity: {
+                    required: true
+                },
+                checkoutaddressstate: {
+                    required: true
+                },
+                checkoutaddressaddress2: {
+                    required: true
+                },
+                checkoutaddressstate: {
+                    required: true
+                },
+                checkoutaddresszipcode: {
+                    required: true
+                }
+            },
+            messages: {
+                checkoutaddressname: {
+                    minlength: 'Must be at least 6 characters.'
+                },
+                checkoutaddresslastname: {
+                    minlength: 'Must be at least 6 characters.'
+                }
+            }
 
-	$("#form-shipping").validate({
-		rules: {
-			checkoutaddressname: {
-				required: true,
-				minlength:6
-			},
-			checkoutaddresslastname: {
-				required: true,
-				minlength:6
-			},
-			checkoutaddressphone: {
-				required: true,
-				number:true
-			},
-			checkoutaddressaddress1: {
-				required: true
-			},
-			checkoutaddressaddress2: {
-				required: true
-			},
-			checkoutaddresscity: {
-				required: true
-			},
-			checkoutaddressstate: {
-				required: true
-			},
-			checkoutaddressaddress2: {
-				required: true
-			},
-			checkoutaddressstate: {
-				required: true
-			},
-			checkoutaddresszipcode: {
-				required: true
-			}
-		},
-		messages: {
-			checkoutaddressname: {
-				minlength: 'Must be at least 6 characters.'
-			},
-			checkoutaddresslastname: {
-				minlength: 'Must be at least 6 characters.'
-			}
-		}
-		
-		
-	});
-	
-	$("#bill-form").validate({
-		rules: {
-			same: {
-				required: true
-			},
-			yes: {
-				required: true
-			}
-		},
-		messages: {
-			checkoutaddressname: {
-				minlength: 'Must be at least 6 characters.'
-			},
-			checkoutaddresslastname: {
-				minlength: 'Must be at least 6 characters.'
-			},
 
-		}
-		
-		
-	});
+        });
+    }
 
-	
-	$("#profile-form").validate({
-		rules: {
-			myprofileemail: {
-				required: true,
-				email:true
-			},
-			myprofilepassword: {
-				required: true,
-				minlength:6
-			}
-		},
-		messages: {
-			myprofileemail: {
-				minlength: 'Must be at least 6 characters.'
-			},
-			myprofilepassword: {
-				minlength: 'Must be at least 6 characters.'
-			}
+	if($("#bill-form") > 0){
+        $("#bill-form").validate({
+            rules: {
+                same: {
+                    required: true
+                },
+                yes: {
+                    required: true
+                }
+            },
+            messages: {
+                checkoutaddressname: {
+                    minlength: 'Must be at least 6 characters.'
+                },
+                checkoutaddresslastname: {
+                    minlength: 'Must be at least 6 characters.'
+                }
 
-		}
-		
-		
-	});
+            }
+
+
+        });
+    }
+
+
+	if($("#profile-form") > 0){
+        $("#profile-form").validate({
+            rules: {
+                myprofileemail: {
+                    required: true,
+                    email:true
+                },
+                myprofilepassword: {
+                    required: true,
+                    minlength:6
+                }
+            },
+            messages: {
+                myprofileemail: {
+                    minlength: 'Must be at least 6 characters.'
+                },
+                myprofilepassword: {
+                    minlength: 'Must be at least 6 characters.'
+                }
+
+            }
+
+
+        });
+    }
+
 
 
     //Add menu separator

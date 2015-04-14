@@ -1,11 +1,9 @@
 
 $(document).ready(function($) {
 
-
-
     //save .wrapper block width
     window.wrapperWidth = $('.wrapper').width();
-
+    console.log(window.wrapperWidth);
 
     window.loadedItems = 0;
     window.totalItems = 0;
@@ -32,8 +30,7 @@ $(document).ready(function($) {
             success: function(response) {
                 var thumbnails = '';
                 var popups = '';
-
-
+                
                 if(typeof response.thumbnails == 'object'){
                     $.each(response.thumbnails, function(index, item){
                         var iconText = 'View';
@@ -79,8 +76,6 @@ $(document).ready(function($) {
                         //modal window handlers
                         popups += '<script>$("#gallery-modal-'+dataTargetNum+'").on(\'hide.bs.modal\', modalHideHandler);</script>';
                         popups += '<script>$("#gallery-modal-'+dataTargetNum+'").on(\'show.bs.modal\', modalShowHandler);</script>';
-
-
 
                          popups +=  '</div>' +
                         '<div class="popup-comments">';
@@ -139,7 +134,9 @@ $(document).ready(function($) {
 
 function modalShowHandler(e){
     //apply saved width
+    console.log('modalShowHandler')
     $('.wrapper').width(window.wrapperWidth);
+    console.log(window.wrapperWidth)
 }
 
 function modalHideHandler(e, videoContainerId){

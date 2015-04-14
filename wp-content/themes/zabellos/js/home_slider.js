@@ -1,4 +1,4 @@
-$(function() {
+$(document).ready(function() {
     //var slideWidth = 984;
     var slideWidth = $('.home-content > .container').width();
 
@@ -7,7 +7,7 @@ $(function() {
 
     var shift = 0;
     var startPos = $('.home-slider-pagination').offset();
-    console.log($('.home-slider-pagination'));
+
     $('.home-slider-pagination').draggable({
         axis: 'x',
         containment: '.slider-viewport',

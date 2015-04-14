@@ -18,6 +18,10 @@
     <script charset="utf-8" type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
     <script charset="utf-8" type="text/javascript">stLight.options({"publisher":"wp.27ff5b1d-2652-434c-afbd-1b54c169302d"});var st_type="wordpress4.1.1";</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.cookie.js"></script>
+    <script src="<?php echo get_template_directory_uri(); ?>/js/validate.min.js"></script>
+    <script  type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/jquery-ui.min.css">
     <?php wp_head(); ?>
 </head>
 <body <?php body_class();?>>
@@ -64,10 +68,6 @@
                                 <p class="navbar-text navbar-right">
 
                                         <a href="<?php echo home_url()?>/login" class="navbar-link">LOG IN<span class="back-link"></span></a>
-
-
-
-
                                 </p>
                                 <?php else:
                                     $current_user = wp_get_current_user();

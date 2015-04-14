@@ -21,8 +21,7 @@
 </div>
 <!--        div wrapper-->
 
-        <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.cookie.js"></script>
-        <script src="<?php echo get_template_directory_uri(); ?>/js/validate.min.js"></script>
+
         <script src="<?php echo get_template_directory_uri(); ?>/js/bootstrap.min.js"></script>
         <script src="<?php echo get_template_directory_uri(); ?>/js/script.js"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

@@ -77,7 +77,7 @@ jQuery(document).ready(function($) {
                 //apply saved height
                 $('.wrapper').height(window.wrapperHeight);
 
-                message.append('<p class="text-muted">Redirecting to login <page></page>...</p>');
+                message.append('<p class="text-muted">Redirecting to login page...</p>');
                 setTimeout(function(){
                     window.location = document.location.protocol + '//' + document.location.host + '/login';
                 }, 3000);

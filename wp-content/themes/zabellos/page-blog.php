@@ -2,16 +2,16 @@
     <script type="text/javascript">
 
         $(document).ready(function($) {
-            var blogPages = Number($.cookie('blogPages'));
+            var loadedBlogPages = Number($.cookie('loadedBlogPages'));
             var postsPerPage;
             var count = 1;
             var isLoading = false;
 
-            if(blogPages){
+            if(loadedBlogPages){
                 var postsPerPageOpt = <?php echo get_option('posts_per_page')?>;
-                postsPerPage = postsPerPageOpt * blogPages;
+                postsPerPage = postsPerPageOpt * loadedBlogPages;
                 loadArticle(count, postsPerPage);
-                count = blogPages + 1;
+                count = loadedBlogPages + 1;
             }
             else{
                 loadArticle(count);
@@ -27,7 +27,7 @@
                     }else{
                         loadArticle(count);
 
-                        $.cookie('blogPages', count, { expires: 7, path: '/blog' });
+                        $.cookie('loadedBlogPages', count);
                     }
                     count++;
                 }
