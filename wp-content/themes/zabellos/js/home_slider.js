@@ -1,6 +1,7 @@
 $(document).ready(function() {
     //var slideWidth = 984;
     var slideWidth = $('.home-content > .container').width();
+    var homePaginationaEidth = $('.home-paginations-a').width();
 
     //top slide
     $('li.slide:nth-child(2)').css('margin-top', -627);
@@ -13,7 +14,7 @@ $(document).ready(function() {
         containment: '.slider-viewport',
         drag: function(event, ui){
             shift = ui.offset.left - startPos.left;
-            var newWidth = slideWidth + shift;
+            var newWidth = slideWidth + shift + homePaginationaEidth/2;
             $('li.slide:nth-child(2)').width(newWidth);
         }
     });
