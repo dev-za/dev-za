@@ -3,7 +3,7 @@ get_header();
 ?>
 
 <script  type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/jquery-ui.css">
+<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/jquery-ui.min.css">
 <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/home_slider.js"></script>
 <div class="home-content">
     <div class="container">

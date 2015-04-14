@@ -53,31 +53,33 @@ $(document).ready(function(){
 		$(".gallery-back").toggleClass("gallery-back-show");
 	
 	});
+    if($('.help-form')){
+        $(".help-form").validate({
+            rules: {
+                name: {
+                    required: true
+                },
+                email: {
+                    required: true,
+                    email:true
+                },
+                num: {
+                    required: true,
+                    number:true
 
-	$(".help-form").validate({
-		rules: {
-			name: {
-				required: true
-			},
-			email: {
-				required: true,
-				email:true
-			},
-			num: {
-				required: true,
-				number:true
-
-			},
-			subject: {
-				required: true
-			},
-			message: {
-				required: true
-			}
-		}
+                },
+                subject: {
+                    required: true
+                },
+                message: {
+                    required: true
+                }
+            }
 
 
-	});
+        });
+    }
+
 
 	$("#form-shipping").validate({
 		rules: {

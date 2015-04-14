@@ -24,7 +24,8 @@
 <?php
     //Add background class for pages login and forgot-password
     $arr = explode('/', $_SERVER['REQUEST_URI']);
-    if(!empty($arr) && isset($arr[1]) && ($arr[1] == 'login' || $arr[1] == 'forgot-password/')){
+
+    if(!empty($arr) && isset($arr[1]) && ($arr[1] == 'login' || $arr[1] == 'forgot-password' || $arr[1] == 'reset-password')){
         $wrapperClass = 'bg-profile';
     }
     else{
