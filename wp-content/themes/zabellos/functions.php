@@ -91,6 +91,7 @@ if ( ! class_exists( 'Featured_Content' ) && 'plugins.php' !== $GLOBALS['pagenow
 
 
 function wp_infinitepaginate(){
+    //AKA: нужно сделать проверку для post переменных
     $loopFile        = $_POST['loop_file'];
     $paged           = $_POST['page_no'];
     $posts_per_page  = (isset($_POST['posts_per_page']) && intval($_POST['posts_per_page']))?intval($_POST['posts_per_page']):get_option('posts_per_page');
@@ -200,7 +201,7 @@ add_action('wp_logout','go_home');
 
 //login failed redirect
 function my_front_end_login_fail( $username ) {
-
+    //AKA: нужно добавить проверку реферер может не существовать
     $referrerUrl = $_SERVER['HTTP_REFERER'];  // where did the post submission come from?
     //trim GET parameters
     $arr = explode('/', $referrerUrl);
@@ -228,7 +229,7 @@ function wpse_lost_password_redirect() {
 add_action('login_headerurl', 'wpse_lost_password_redirect');
 
 
-
+//AKA: это что за метод?
 function custom_login_lostpassword_url()
 {
     // use a site_url/plugins_url to output the correct URL.
@@ -262,7 +263,7 @@ function lost_pass_callback() {
 
 
     global $wpdb, $wp_hasher;
-
+//AKA: нужна проверка для всех пост переменных
     $nonce = $_POST['nonce'];
 
     if ( ! wp_verify_nonce( $nonce, 'rs_user_lost_password_action' ) )
@@ -401,7 +402,7 @@ add_action( 'wp_ajax_reset_pass', 'reset_pass_callback' );
 *	@desc	Process reset password
 */
 function reset_pass_callback() {
-
+    //AKA: проверка для всех пост переменных
     $errors = new WP_Error();
     $nonce = $_POST['nonce'];
 
@@ -472,6 +473,7 @@ function reset_pass_callback() {
  * Set a custom add to cart URL to redirect to
  * @return string
  */
+ //AKA: лучше наверное так site_url('/cart')
 function custom_add_to_cart_redirect() {
     return 'http://'.$_SERVER['SERVER_NAME'].'/cart/';
 }
