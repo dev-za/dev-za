@@ -10,6 +10,7 @@ get_header(); ?>
                         <?php global $postID; $postFields = get_fields($postID);?>
                         <?php if($postFields && isset($postFields['content_images'])){?>
                             <?php foreach($postFields['content_images'] as $index=>$image) {?>
+                            <?php //AKA: нужно убрать прописывание ширины ?>
                                 <img src="<?php echo $image['image']['url'];?>" alt="" width="871" class="img-responsive"/>
                             <?php } ?>
                         <?php } ?>
