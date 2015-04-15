@@ -4,6 +4,7 @@ $(document).ready(function() {
     var homePaginationaEidth = $('.home-paginations-a').width();
 
     //top slide
+    //AKA: а разве нельзя сделать определение ширины на которую нужно сместиться?
     $('li.slide:nth-child(2)').css('margin-top', -627);
 
     var shift = 0;
