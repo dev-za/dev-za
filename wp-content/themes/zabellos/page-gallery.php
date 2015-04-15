@@ -11,6 +11,7 @@
         </div>
     </div>
     <div id="inifiniteLoader">
+        <?php //AKA: нужно убрать прямое прописывание ?>
         <img width="40" height="39" alt="Loading..." src="<?php bloginfo('template_directory'); ?>/images/loading.gif" />
     </div>
     <!--popup-content-->
