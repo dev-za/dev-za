@@ -3,6 +3,7 @@
                 <div class="row">
                     <div class="clearfix">
                         <?php wp_nav_menu(array('menu' => 'bottom-menu', 'menu_class' => 'list-unstyled footer-nav', 'container' => false)); ?>
+                        <?php //AKA: все социалки нужно вынести в админку в настройки футера?>
                         <div class="footer-social">
                             <a href="https://twitter.com" id="tw"></a>
                             <a href="https://facebook.com" id="f"></a>
