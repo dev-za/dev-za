@@ -13,6 +13,7 @@
                         </div>
                     </div>
                     <div class="clearfix" id="copyright">
+                        <?php //AKA: нужно вынести в админку в настройки футера?>
                         <p class="pull-left">©2015 Zabellos, LLC. All rights reserved.</p>
                         <p class="pull-right">All shoes Repaired by Craftsmen in Los Angeles California</p>
                     </div>
