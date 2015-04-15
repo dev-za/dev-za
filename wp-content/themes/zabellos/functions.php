@@ -466,3 +466,13 @@ function reset_pass_callback() {
     // return proper result
     die();
 }
+
+
+/**
+ * Set a custom add to cart URL to redirect to
+ * @return string
+ */
+function custom_add_to_cart_redirect() {
+    return 'http://zabellos.local/cart/';
+}
+add_filter( 'woocommerce_add_to_cart_redirect', 'custom_add_to_cart_redirect' );

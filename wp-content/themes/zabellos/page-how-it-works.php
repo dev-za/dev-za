@@ -18,7 +18,8 @@ get_header(); ?>
                 <div class="col-sm-12">
                     <?php the_field('page_text')?>
                 </div>
-                <?php the_field('repair_now_button')?>
+                <?php //the_field('repair_now_button')?>
+                <a href="<?php echo home_url()?>/?add-to-cart=<?php the_field('product_id')?>" class="btn btn-danger btn-lg"><?php the_field('button_text')?></a>
             </div>
         </div>
     </div>

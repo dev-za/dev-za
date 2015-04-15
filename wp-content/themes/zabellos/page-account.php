@@ -4,9 +4,15 @@ get_header();
     <div class="order-history">
         <div class="container">
             <div class="row">
+
                 <div class="col-xs-12">
                     <div class="row">
                         <h1 class="pull-left">Your Order History</h1>
+
+                        <?php while ( have_posts() ) : the_post(); ?>
+                            <?php the_content(); ?>
+                        <?php endwhile; ?>
+
                         <div class="order-search pull-right">
                             <form>
                                 <input type="text" name="search" placeholder="Search by Order #">
