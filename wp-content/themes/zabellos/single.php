@@ -32,6 +32,7 @@ get_header(); ?>
                                     <?php the_content()?>
                                     <hr/>
                                     <div class="blog-post-link clearfix">
+                                        <?php //AKA: это нужно вынести в админку ?>
                                         <div class="post-social pull-left">
                                             <span class='st_pinterest_large' st_title='<?php the_title(); ?>' st_url='<?php the_permalink(); ?>'></span>
                                             <span class='st_facebook_large' st_title='<?php the_title(); ?>' st_url='<?php the_permalink(); ?>'></span>
