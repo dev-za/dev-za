@@ -21,6 +21,7 @@ get_header();
                         </div>
                     </div>
                 </div>
+                <?php //AKA: это еще не реализовано? ?>
                 <div class="col-xs-12">
                     <div class="row order-history-table">
                         <table class="table">
