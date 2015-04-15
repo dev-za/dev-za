@@ -8,6 +8,7 @@
         foreach ( (array) $featured_posts as $order => $post ) :
         $postCnt++;
         setup_postdata( $post );
+        //AKA: настройку количества картинок в ряд нужно вынести на админку
         if($postCnt > 3){?>
         <div class="hidden-xs hidden-sm">
             <?php
