@@ -1,4 +1,4 @@
-
+<?php //AKA: разве этот темплайт еще нужен? ?>
 <div class="col-sm-12 help-contact-form back-c">
     <h2>Contact Us</h2>
     <form role="form" class="help-form">
