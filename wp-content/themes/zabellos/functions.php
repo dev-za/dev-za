@@ -473,6 +473,6 @@ function reset_pass_callback() {
  * @return string
  */
 function custom_add_to_cart_redirect() {
-    return 'http://zabellos.local/cart/';
+    return 'http://'.$_SERVER['SERVER_NAME'].'/cart/';
 }
 add_filter( 'woocommerce_add_to_cart_redirect', 'custom_add_to_cart_redirect' );
