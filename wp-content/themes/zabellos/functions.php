@@ -230,17 +230,7 @@ add_action('login_headerurl', 'wpse_lost_password_redirect');
 
 
 //AKA: это что за метод?
-function custom_login_lostpassword_url()
-{
-    // use a site_url/plugins_url to output the correct URL.
-    return "http://.../my-custom-lostpassword-screen.php";
-}
-
-add_filter("resetpass_url", "custom_login_lostpassword_url");
-
-//login_form_rp
-
-
+//удалил
 
 
 // localize wp-ajax, notice the path to our theme-ajax.js file
@@ -475,6 +465,6 @@ function reset_pass_callback() {
  */
  //AKA: лучше наверное так site_url('/cart')
 function custom_add_to_cart_redirect() {
-    return 'http://'.$_SERVER['SERVER_NAME'].'/cart/';
+    return site_url('/cart');
 }
 add_filter( 'woocommerce_add_to_cart_redirect', 'custom_add_to_cart_redirect' );

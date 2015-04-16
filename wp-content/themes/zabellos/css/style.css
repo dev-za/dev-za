@@ -1558,3 +1558,8 @@ p > a > img {
     margin-right: 20px;
     margin-top: 5px;
 }
+
+/*Woocommerce*/
+ul.woocommerce-error{
+    border-top: none !important;
+}
