@@ -1,21 +1,76 @@
 <script type="text/javascript">
     function removeProduct(a, productId){
         //change quantity
-        var qtyFld = $('input[name="cart['+productId+'][qty]"]');
-        $(qtyFld).val(qtyFld.val() - 1);
-        console.log('new val', qtyFld.val());
-        //hide product block
-        $(a).parent().parent('.block-1').hide();
+        changeFormQuantity(-1, productId);
 
         //submit form
-        $('form')
-            .append('<input type="submit" class="button" name="update_cart" value="Update Cart">' +
-            '<input type="hidden" id="_wpnonce" name="_wpnonce" value="02c0f334bf">'
-
-        );
-        $('input[name="update_cart"]').click();
+        submitForm(function(){
+            loadCartData(function(cartData){
+                updateCartForm(cartData);
+                removeProductBlock(a);
+            });
+        });
 
         return false;
+    }
+
+    function addProduct(a, productId){
+        //change quantity
+        changeFormQuantity(1, productId);
+
+        //submit form
+        submitForm(function(){
+            loadCartData(function(cartData){
+                updateCartForm(cartData);
+                addProductBlock(a);
+            });
+        });
+
+        return false;
+    }
+
+
+    function changeFormQuantity(sub, productId){
+//        var qtyFld = $('input[name="cart['+productId+'][qty]"]');
+        var qtyFld = $('#product-qty-field');
+        var oldNum = Number(qtyFld.val());
+        var newNum = oldNum +sub;
+        console.log(oldNum);
+        console.log(newNum);
+        $(qtyFld).val(newNum);
+    }
+
+    function loadCartData(callback){
+        $.ajax({
+            url: "http://"+document.location.hostname+"/wp-content/themes/zabellos/ajax/woocommerce.php",
+            context: document.body
+        }).done(function(data) {
+
+            if(typeof (callback) == 'function')
+                callback(data);
+        });
+    }
+
+    function updateCartForm(cart){
+        console.log('updateCartForm');
+        console.log(cart);
+    }
+
+    function submitForm(callback){
+        var form = $('form');
+        $.post($(form).attr('action'), $(form).serializeArray() , function(data){
+            callback();
+        });
+    }
+
+    function removeProductBlock(a){
+        $(a).parent().parent('.block-1').remove();
+    }
+
+    function addProductBlock(){
+        block = $('.block-1').get(0).outerHTML;
+
+        $(block).insertBefore($('.block-2'));
     }
 
 
@@ -54,7 +109,11 @@ do_action( 'woocommerce_before_cart' ); ?>
 			if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
 				?>
 
-                <input type="number" step="1" min="0" name="cart[<?php echo $cart_item_key?>][qty]" value="<?php echo $cart_item['quantity'];?>" title="Qty" class="product-quantity input-text qty text" size="4" hidden="">
+                <input id="product-qty-field" name="cart[<?php echo $cart_item_key?>][qty]" value="<?php echo $cart_item['quantity'];?>" title="Qty" class="product-quantity input-text qty text" size="4" hidden="">
+
+
+                <?php wp_nonce_field( 'woocommerce-cart' ); ?>
+                <input type="hidden" class="button" name="update_cart" value="Update Cart">
 
                 <?php
                 //Products loop
@@ -83,8 +142,13 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 
         <div class="block-2 padding-right-40 padding-top-bottom-25 clearfix">
-            <button type="button" class="btn btn-primary pull-left">Add another pair</button>
-            <p class="pull-right">Add another 2 pair to <span class="text-success">get discount!</span></p>
+            <button type="button" class="btn btn-primary pull-left" onclick="addProduct();">Add another pair</button>
+
+            <?php if($cart_item['quantity'] == 1):?>
+                <p class="pull-right">Add another 2 pair to <span class="text-success">get discount!</span></p>
+            <?php endif;?>
+
+
         </div>
         <div class="block-3 padding-right-40 padding-top-bottom-25 clearfix h4">
             <p class="pull-left">You save with your order:</p>
