@@ -14,18 +14,12 @@ get_header();
                 </div>
             </div>
             <div class="hidden-xs hidden-sm col-md-4 guaranteed">
-                <a href="contact-us.html">Need Help? See Customer Service</a>
+                <a href="<?php the_field('customer_service_link_url')?>"><?php the_field('customer_service_link_text')?></a>
+
                 <h2>Satisfaction Guaranteed</h2>
-                <p>At Zabellos, we aim to provide the highest
-                    level of craftsmanship and service. If you're
-                    unhappy in any way with your shoe repair
-                    or purchase, we'll work with you until you're
-                    completely satisfied.</p>
+                <p><?php the_field('satisfaction_guaranteed')?></p>
                 <h2>Secure Shopping</h2>
-                <p>Zabellos uses 128-bit Secure Sockets Layer
-                    (SSL) technology to provide you with the
-                    safest, most secure shopping experience
-                    possible.</p>
+                <p><?php the_field('secure_shopping')?></p>
                 <img src="<?php echo get_template_directory_uri(); ?>/images/count.jpg" alt="" width="95" height="45" />
             </div>
         </div>

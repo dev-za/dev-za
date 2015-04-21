@@ -468,3 +468,14 @@ function custom_add_to_cart_redirect() {
     return site_url('/cart');
 }
 add_filter( 'woocommerce_add_to_cart_redirect', 'custom_add_to_cart_redirect' );
+
+
+//Woocommerce
+add_action('woocommerce_login_form', 'zabellos_login_form');
+
+function zabellos_login_form() {
+    echo '123';
+
+    echo get_template_part('zabellos-login-form');
+}
+

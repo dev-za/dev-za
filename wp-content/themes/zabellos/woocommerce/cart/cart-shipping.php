@@ -14,21 +14,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
-<tr class="shipping">
-	<th><?php
+<tr>
+	<td class="text-muted"><?php
 		if ( $show_package_details ) {
 			printf( __( 'Shipping #%d', 'woocommerce' ), $index + 1 );
 		} else {
 			_e( 'Shipping', 'woocommerce' );
 		}
-	?></th>
+	?></td>
 	<td>
 		<?php if ( ! empty( $available_methods ) ) : ?>
 
 			<?php if ( 1 === count( $available_methods ) ) :
 				$method = current( $available_methods );
-
-				echo wp_kses_post( wc_cart_totals_shipping_method_label( $method ) ); ?>
+//				echo wp_kses_post( wc_cart_totals_shipping_method_label( $method ) );
+				echo $method->label; ?>
 				<input type="hidden" name="shipping_method[<?php echo $index; ?>]" data-index="<?php echo $index; ?>" id="shipping_method_<?php echo $index; ?>" value="<?php echo esc_attr( $method->id ); ?>" class="shipping_method" />
 
 			<?php elseif ( get_option( 'woocommerce_shipping_method_format' ) === 'select' ) : ?>

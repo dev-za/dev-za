@@ -54,6 +54,18 @@
     function updateCartForm(cart){
         console.log('updateCartForm');
         console.log(cart);
+
+        $('#cart-subtotal').children('td').eq(1).html(cart.subtotal);
+        $('#cart-tax-total').children('td').eq(1).html((cart.taxes)?cart.taxes:'$0.00');
+        $('#cart-order-total').children('td').eq(1).html('<strong>'+cart.total+'</strong>');
+
+        if(cart.cartData.cart_contents_total > 3 ){
+            $('#get-discount-text').hide();
+        }
+        else{
+            $('#get-discount-text').show();
+        }
+
     }
 
     function submitForm(callback){
@@ -68,8 +80,7 @@
     }
 
     function addProductBlock(){
-        block = $('.block-1').get(0).outerHTML;
-
+        var block = $('.block-1').get(0).outerHTML;
         $(block).insertBefore($('.block-2'));
     }
 
@@ -77,6 +88,11 @@
 </script>
 
 <?php
+
+/*$discountPlugin = new Woo_Bulk_Discount_Plugin_t4m();
+var_dump($discountPlugin);
+var_dump($discountPlugin->discount_coeffs);*/
+
 /**
  * Cart Page
  *
@@ -122,7 +138,7 @@ do_action( 'woocommerce_before_cart' ); ?>
                         <div class="pull-left">
                             <p class="h4">1 pair</p>
                             <div class="form-group">
-                                <textarea class="form-control" name="pair" placeholder="your notes here (optional)"></textarea>
+                                <textarea class="form-control" name="cart[<?php echo $cart_item_key?>][notes]" placeholder="your notes here (optional)"></textarea>
                             </div>
                         </div>
                         <div class="pull-right pair-glyph">
@@ -145,15 +161,17 @@ do_action( 'woocommerce_before_cart' ); ?>
             <button type="button" class="btn btn-primary pull-left" onclick="addProduct();">Add another pair</button>
 
             <?php if($cart_item['quantity'] == 1):?>
-                <p class="pull-right">Add another 2 pair to <span class="text-success">get discount!</span></p>
+                <p id="get-discount-text" class="pull-right">Add another 2 pair to <span class="text-success">get discount!</span></p>
             <?php endif;?>
 
 
         </div>
-        <div class="block-3 padding-right-40 padding-top-bottom-25 clearfix h4">
+
+        <!--<div class="block-3 padding-right-40 padding-top-bottom-25 clearfix h4">
             <p class="pull-left">You save with your order:</p>
             <p class="pull-right text-success">-$19.00</p>
-        </div>
+        </div>-->
+
         <div class="block-4 padding-right-40 padding-top-bottom-25">
             <p class="h4">Would you like shipping boxes mailed to you?</p>
             <div class="radio">
@@ -192,41 +210,33 @@ do_action( 'woocommerce_before_cart' ); ?>
 
             </div>
 
+
             <div class="pull-right col-sm-6">
                 <div class="row">
-                    <table>
-                        <tr>
-                            <td class="text-muted ">Subtotal:</td>
-                            <td>$138.00</td>
-                        </tr>
-                        <tr>
-                            <td  class="text-muted">Shipping:</td>
-                            <td>Grounf FREE</td>
-                        </tr>
-                        <tr>
-                            <td  class="text-muted">Sales Tax (info):</td>
-                            <td>$0.00</td>
-                        </tr>
-                        <tr>
-                            <td  class="text-muted">Order Total:</td>
-                            <td class="font-22"><strong>$138.00</strong></td>
-                        </tr>
-                    </table>
+<!--                    --><?php //do_action( 'woocommerce_cart_collaterals' ); ?>
+
+                    <?php woocommerce_cart_totals(); ?>
                 </div>
             </div>
+
+
+
         </div>
     </div>
-    <p><a href="checkout.html" class="btn btn-danger pull-right">Continue checkout</a></p>
+
+    <p>
+        <a href="<?php echo home_url()?>/checkout/" class="btn btn-danger pull-right">Continue checkout</a>
+    </p>
 
 </form>
 
-<div class="cart-collaterals">
+<!--<div class="cart-collaterals">
 
-	<?php do_action( 'woocommerce_cart_collaterals' ); ?>
+	<?php /*do_action( 'woocommerce_cart_collaterals' ); */?>
 
-	<?php woocommerce_cart_totals(); ?>
+	<?php /*woocommerce_cart_totals(); */?>
 
-</div>
+</div>-->
 
 
 <?php do_action( 'woocommerce_after_cart' ); ?>

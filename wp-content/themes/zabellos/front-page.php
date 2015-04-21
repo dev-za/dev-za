@@ -38,7 +38,14 @@ get_header();
                         </div>
 
                         <div class="home-quation clearfix">
-                            <a href="<?php echo home_url()?>/?add-to-cart=<?php the_field('product_id')?>" class="btn btn-danger btn-lg"><?php the_field('button_text')?></a>
+                        <?php
+
+                            $product = get_field('product');
+                            if($product):?>
+                                <a href="<?php echo home_url()?>/?add-to-cart=<?php echo $product->ID?>" class="btn btn-danger btn-lg"><?php the_field('button_text')?></a>
+                        <?php
+                            endif;
+                        ?>
                             <p class="p-quation"><?php the_field('have_a_question_text')?><br/> or  <a href="<?php the_field('contact_us_link')?>">contact us</a></p>
                         </div>
                         <?php while ( have_posts() ) : the_post(); ?>
