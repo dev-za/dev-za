@@ -10,7 +10,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
-
+if ( is_user_logged_in()){
 ?>
 <div class="woocommerce-shipping-fields">
 	<?php if ( WC()->cart->needs_shipping_address() === true ) : ?>
@@ -69,3 +69,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<?php do_action( 'woocommerce_after_order_notes', $checkout ); ?>
 </div>
+<?php }?>

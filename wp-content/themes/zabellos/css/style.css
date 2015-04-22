@@ -1563,3 +1563,11 @@ p > a > img {
 ul.woocommerce-error{
     border-top: none !important;
 }
+
+.checkout-form-message {
+    margin-top: 15px;
+}
+
+.checkout-form-message{
+    font-size: 13px !important;
+}

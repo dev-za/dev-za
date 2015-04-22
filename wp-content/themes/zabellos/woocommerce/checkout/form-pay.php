@@ -10,7 +10,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
-
+if ( is_user_logged_in()){
 ?>
 <form id="order_review" method="post">
 
@@ -97,3 +97,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div>
 
 </form>
+
+<?php }?>

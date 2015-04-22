@@ -459,6 +459,8 @@ function reset_pass_callback() {
 }
 
 
+//Woocommerce
+
 /**
  * Set a custom add to cart URL to redirect to
  * @return string
@@ -470,12 +472,4 @@ function custom_add_to_cart_redirect() {
 add_filter( 'woocommerce_add_to_cart_redirect', 'custom_add_to_cart_redirect' );
 
 
-//Woocommerce
-add_action('woocommerce_login_form', 'zabellos_login_form');
-
-function zabellos_login_form() {
-    echo '123';
-
-    echo get_template_part('zabellos-login-form');
-}
 

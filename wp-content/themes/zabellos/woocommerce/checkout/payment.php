@@ -10,7 +10,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
+if ( is_user_logged_in()){
 ?>
 
 <?php if ( ! is_ajax() ) : ?>
@@ -65,3 +65,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php if ( ! is_ajax() ) : ?>
 	<?php do_action( 'woocommerce_review_order_after_payment' ); ?>
 <?php endif; ?>
+<?php }?>

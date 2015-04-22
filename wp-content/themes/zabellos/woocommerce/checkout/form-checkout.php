@@ -26,7 +26,7 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
 
 <form name="checkout" method="post" class="checkout woocommerce-checkout" action="<?php echo esc_url( $get_checkout_url ); ?>" enctype="multipart/form-data">
 
-	<?php if ( sizeof( $checkout->checkout_fields ) > 0 ) : ?>
+	<?php if ( sizeof( $checkout->checkout_fields ) > 0  && is_user_logged_in()) : ?>
 
 		<?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
 
@@ -57,3 +57,4 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
 </form>
 
 <?php do_action( 'woocommerce_after_checkout_form', $checkout ); ?>
+

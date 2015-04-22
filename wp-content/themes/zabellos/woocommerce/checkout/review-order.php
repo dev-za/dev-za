@@ -10,6 +10,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+if ( is_user_logged_in()){
 ?>
 <table class="shop_table woocommerce-checkout-review-order-table">
 	<thead>
@@ -102,3 +103,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	</tfoot>
 </table>
+
+<?php } ?>

@@ -12,7 +12,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /** @global WC_Checkout $checkout */
+
+if ( is_user_logged_in()){
 ?>
+
+
 <div class="woocommerce-billing-fields">
 	<?php if ( WC()->cart->ship_to_billing_address_only() && WC()->cart->needs_shipping() ) : ?>
 
@@ -68,3 +72,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<?php endif; ?>
 </div>
+
+<?php }?>
