@@ -21,10 +21,38 @@ if ( is_user_logged_in() || 'no' === get_option( 'woocommerce_enable_checkout_lo
 ?>
 <script type="text/javascript">
     $(document).ready(function(){
-       $('input[name="log"]').blur(function(){
-           $.post('<?php bloginfo('template_directory'); ?>/ajax/checkout.php', { 'action': 'check_user_exists'},
+        var formAction = '<?php echo site_url()?>/wp-login.php';
+       $('input#user_login').on('input', function(){
+
+           var email = $(this).val();
+
+           $('#user_email').val(email);
+
+           $.post('<?php bloginfo('template_directory'); ?>/ajax/checkout.php',
+               { action: 'check_user_exists', email: email },
                function(response){
-                    console.log(response);
+                   if(response.success){
+                       if(!response.user_exists){
+                           $('input#user_login').parent().parent('form').attr('action', formAction + '?action=register');
+
+                           $('input#user_login').attr('name', 'user_login');
+
+                           $('input[name="pwd"]').parent().addClass('hide');
+
+                           $('input[type="submit"]').val('Register');
+                       }
+                       else{
+                           $('input#user_login').parent().parent('form').attr('action', formAction);
+
+                           $('input#user_login').attr('name', 'log');
+
+                           $('input[name="pwd"]').parent().removeClass('hide');
+
+                           $('input[type="submit"]').val('Login');
+
+                       }
+                   }
+
                }
            );
        });
@@ -43,7 +71,7 @@ if ( is_user_logged_in() || 'no' === get_option( 'woocommerce_enable_checkout_lo
             <div class="container">
                 <div class="row">
                     <div class="col-md-5">
-                        <?php get_template_part('login-form')?>
+                        <?php get_template_part('login-form-checkout')?>
                     </div>
                     <div class="col-md-6">
                         <p class="text-muted text-left checkout-form-message font-13">Please enter your email for existing account or new email if you don't have an account with as.</p>

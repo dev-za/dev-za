@@ -173,6 +173,7 @@ add_filter('gettext', function($text){
  * @param object $user Logged user's data.
  * @return string
  */
+//login redirect
 function my_login_redirect( $redirect_to, $request, $user ) {
     //is there a user to check?
     global $user;
@@ -181,11 +182,17 @@ function my_login_redirect( $redirect_to, $request, $user ) {
         if ( in_array( 'administrator', $user->roles ) ) {
             // redirect them to the default place
             return $redirect_to;
-        } else {
-//            return home_url();
-            return '/account';
         }
-    } else {
+        else {
+            if(!empty($_POST['redirect'])){
+                return $_POST['redirect'];
+            }
+            else{
+                return '/account';
+            }
+        }
+    }
+    else {
         return $redirect_to;
     }
 }
@@ -198,6 +205,14 @@ function go_home(){
     exit();
 }
 add_action('wp_logout','go_home');
+
+
+
+function registration_redirect() {
+    return home_url( '/checkout' );
+}
+
+add_filter( 'registration_redirect', 'registration_redirect' );
 
 //login failed redirect
 function my_front_end_login_fail( $username ) {

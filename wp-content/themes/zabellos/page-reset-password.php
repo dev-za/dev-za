@@ -48,11 +48,11 @@ get_header();
 
                         <div class="form-group col-xs-12 col-lg-12">
                             <label for="pass1" class="sr-only">New password</label>
-                            <input type="password" class="form-control" name="pass1" id="pass1" autocomplete="off" value="" name="myprofilepassword" placeholder="New password">
+                            <input type="password" class="form-control" name="pass1" id="pass1" autocomplete="off" value="" placeholder="New password">
                         </div>
                         <div class="form-group col-xs-12 col-lg-12">
                             <label for="pass2" class="sr-only">Confirm new password</label>
-                            <input type="password" class="form-control" name="pass2" id="pass2" autocomplete="off" value="" name="myprofilepassword" placeholder="Confirm new password">
+                            <input type="password" class="form-control" name="pass2" id="pass2" autocomplete="off" value="" placeholder="Confirm new password">
                         </div>
 
 
