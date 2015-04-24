@@ -21,41 +21,79 @@ if ( is_user_logged_in() || 'no' === get_option( 'woocommerce_enable_checkout_lo
 ?>
 <script type="text/javascript">
     $(document).ready(function(){
+
+        $("#user_login").keyup(function(){
+
+            var email = $("#user_login").val();
+
+            if(email != 0)
+            {
+                if(isValidEmailAddress(email))
+                {
+                    $("#validEmail").addClass('validField');
+                } else {
+                    $("#validEmail").removeClass('validField');
+                }
+            } else {
+                $("#user_login").css({
+                    "background-image": "none"
+                });
+            }
+
+        });
+
+        function isValidEmailAddress(emailAddress) {
+            var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+            return pattern.test(emailAddress);
+        }
+
+
         var formAction = '<?php echo site_url()?>/wp-login.php';
-       $('input#user_login').on('input', function(){
+        $('input#user_login').on('input', userExists);
+        $('input#user_login').on('blur', userExists);
 
-           var email = $(this).val();
+        function userExists(){
+            var email = $(this).val();
 
-           $('#user_email').val(email);
+            $('#user_email').val(email);
 
-           $.post('<?php bloginfo('template_directory'); ?>/ajax/checkout.php',
-               { action: 'check_user_exists', email: email },
-               function(response){
-                   if(response.success){
-                       if(!response.user_exists){
-                           $('input#user_login').parent().parent('form').attr('action', formAction + '?action=register');
+            $.post('<?php bloginfo('template_directory'); ?>/ajax/checkout.php',
+                { action: 'check_user_exists', email: email },
+                function(response){
+                    if(response.success){
+                        if(response.user_exists) {
+                            doUserExists();
+                        } else {
+                            doUserNotExists()
+                        }
+                    } else {
+                        doUserExists();
+                    }
 
-                           $('input#user_login').attr('name', 'user_login');
+                }
+            );
+        }
 
-                           $('input[name="pwd"]').parent().addClass('hide');
+        function doUserNotExists(){
+            $('input#user_login').parent().parent('form').attr('action', formAction + '?action=register');
 
-                           $('input[type="submit"]').val('Register');
-                       }
-                       else{
-                           $('input#user_login').parent().parent('form').attr('action', formAction);
+            $('input#user_login').attr('name', 'user_login');
 
-                           $('input#user_login').attr('name', 'log');
+            $('input[name="pwd"]').parent().addClass('hide');
 
-                           $('input[name="pwd"]').parent().removeClass('hide');
+            $('input[type="submit"]').val('Register');
+        }
 
-                           $('input[type="submit"]').val('Login');
+        function doUserExists(){
+            $('input#user_login').parent().parent('form').attr('action', formAction);
 
-                       }
-                   }
+            $('input#user_login').attr('name', 'log');
 
-               }
-           );
-       });
+            $('input[name="pwd"]').parent().removeClass('hide');
+
+            $('input[type="submit"]').val('Login');
+        }
+
     });
 </script>
 <div class="container">
@@ -74,7 +112,12 @@ if ( is_user_logged_in() || 'no' === get_option( 'woocommerce_enable_checkout_lo
                         <?php get_template_part('login-form-checkout')?>
                     </div>
                     <div class="col-md-6">
-                        <p class="text-muted text-left checkout-form-message font-13">Please enter your email for existing account or new email if you don't have an account with as.</p>
+                        <?php if(isset($_REQUEST['registered'])):?>
+                            <p class="text-warning checkout-form-message text-left">You are successfully registered!</p>
+                            <p class="text-warning checkout-form-message text-left">Please, check your e-mail for the password.</p>
+                        <?php else:?>
+                        <p class="text-muted text-left checkout-form-message">Please enter your email for existing account or new email if you don't have an account with as.</p>
+                        <?php endif;?>
                     </div>
                 </div>
             </div>

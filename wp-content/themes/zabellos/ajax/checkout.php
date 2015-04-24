@@ -7,7 +7,7 @@ if($_POST['action'] == 'check_user_exists'){
     if(!empty($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
         $response->success = true;
 
-        if(email_exists($_POST['email']) || username_exists($_POST['email'])){
+        if(email_exists($_POST['email'])){
             $response->user_exists = true;
         }
         else{

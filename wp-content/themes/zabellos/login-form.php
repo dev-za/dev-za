@@ -12,5 +12,6 @@
             <a href="<?php home_url()?>/forgot-password">Forgot your password?</a>
         </p>
         <input type="submit" class="btn btn-danger btn-lg" value="Login">
+        <input type="hidden" name="redirect_to" value="<?php echo site_url()?>/account/">
     </div>
 </form>
