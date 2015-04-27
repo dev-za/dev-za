@@ -449,7 +449,7 @@ add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
 function custom_override_checkout_fields( $fields ) {
     $fields['billing']['billing_shipping_boxes'] = array(
         'required'  => false,
-//        'class'     => array('hide'),
+        'class'     => array('hide'),
         'clear'     => true
     );
 
