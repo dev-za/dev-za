@@ -437,11 +437,12 @@ function reset_pass_callback() {
  * Set a custom add to cart URL to redirect to
  * @return string
  */
+add_filter( 'woocommerce_add_to_cart_redirect', 'custom_add_to_cart_redirect' );
 
 function custom_add_to_cart_redirect() {
     return site_url('/cart');
 }
-add_filter( 'woocommerce_add_to_cart_redirect', 'custom_add_to_cart_redirect' );
+
 
 add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
 

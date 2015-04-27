@@ -49,6 +49,18 @@ function product_discount_options($product_id){
             var newUrl = url + 'billing_shipping_boxes=' + $(this).val();
             checkoutBtn.attr('href', newUrl);
         });
+        $('#continue_checkout_button').click(function(){
+
+            var notes = {};
+
+            $('textarea').each(function(i){
+               notes[i] = $(this).val();
+            });
+
+            $.cookie('woocommerce_cart_comments', JSON.stringify(notes), { path: '/' });
+
+            return true;
+        })
     });
 
 
