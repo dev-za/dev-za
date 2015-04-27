@@ -1585,3 +1585,12 @@ ul.woocommerce-error{
     background-image: url(../images/validyes.png);
     background-repeat: no-repeat;
 }
+
+.discount-info .old-price {
+  display:none;
+}
+
+.discount-info .new-price {
+  font-weight: normal !important;
+  color: #000000 !important;
+}

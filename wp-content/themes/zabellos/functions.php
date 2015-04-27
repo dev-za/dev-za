@@ -437,11 +437,23 @@ function reset_pass_callback() {
  * Set a custom add to cart URL to redirect to
  * @return string
  */
- //AKA: лучше наверное так site_url('/cart')
+
 function custom_add_to_cart_redirect() {
     return site_url('/cart');
 }
 add_filter( 'woocommerce_add_to_cart_redirect', 'custom_add_to_cart_redirect' );
+
+add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
+
+function custom_override_checkout_fields( $fields ) {
+    $fields['billing']['billing_shipping_boxes'] = array(
+        'required'  => false,
+//        'class'     => array('hide'),
+        'clear'     => true
+    );
+
+    return $fields;
+}
 
 
 

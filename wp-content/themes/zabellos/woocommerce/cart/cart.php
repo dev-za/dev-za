@@ -1,28 +1,83 @@
+<?php
+global $wpdb;
+
+
+//$results = $wpdb->get_results( 'SELECT * FROM  `wp_postmeta` WHERE  `post_id` =269 AND meta_key LIKE "_bulkdiscount_%"', OBJECT );
+$results = $wpdb->get_results("SELECT * FROM `wp_options` WHERE `option_name` = 'woocommerce_t4m_discount_type'", OBJECT);
+
+$discount_emabled = $results[0]->emabled;
+$discount_type = $results[0]->option_value;
+
+function product_discount_options($product_id){
+  if($product_id){
+    
+    global $wpdb;
+    $query = "SELECT meta_key, meta_value FROM  `wp_postmeta` 
+    WHERE  `post_id` = " . $product_id . " AND (meta_key = '_bulkdiscount_quantity_1' OR meta_key = '_bulkdiscount_discount_1' OR meta_key = '_bulkdiscount_enabled')";
+
+    $results = $wpdb->get_results($query, OBJECT);
+    
+    $translate = Array('_bulkdiscount_quantity_1' => 'quantity', '_bulkdiscount_discount_1' => 'discount', '_bulkdiscount_enabled' => 'enabled');
+    
+    $options = new StdClass();
+    
+    $options->product_id = $product_id;
+
+    foreach($results as $row){
+      $options->{$translate[$row->meta_key]} = $row->meta_value;
+    }
+    
+    if(strtolower($options->enabled) == 'yes'){
+      return $options;
+    } else {
+      return false;
+    }
+    
+  } else {
+    return false;
+  }
+  
+  
+}
+?>
+
 <script type="text/javascript">
-    function removeProduct(a, productId){
+    $(document).ready(function(){
+        $('input[name="billing_shipping_boxes"]').change(function(){
+            var checkoutBtn = $('#continue_checkout_button');
+            var url = checkoutBtn.attr('href').split('billing_shipping_boxes=')[0];
+            var newUrl = url + 'billing_shipping_boxes=' + $(this).val();
+            checkoutBtn.attr('href', newUrl);
+        });
+    });
+
+
+    
+    function removeProduct(a, cartItemKey, productId){
         //change quantity
-        changeFormQuantity(-1, productId);
+        changeFormQuantity(-1, cartItemKey);
 
         //submit form
         submitForm(function(){
-            loadCartData(function(cartData){
+            loadCartData(productId, function(cartData){
                 updateCartForm(cartData);
-                removeProductBlock(a);
+                updatePrices(cartData.discount_price, a, removeProductBlock);
             });
         });
 
         return false;
     }
 
-    function addProduct(a, productId){
+    function addProduct(a, cartItemKey, productId){
         //change quantity
-        changeFormQuantity(1, productId);
+        changeFormQuantity(1, cartItemKey);
 
         //submit form
         submitForm(function(){
-            loadCartData(function(cartData){
+            loadCartData(productId, function(cartData){
                 updateCartForm(cartData);
-                addProductBlock(a);
+                updatePrices(cartData.discount_price, null, addProductBlock);
+                
             });
         });
 
@@ -35,14 +90,13 @@
         var qtyFld = $('#product-qty-field');
         var oldNum = Number(qtyFld.val());
         var newNum = oldNum +sub;
-        console.log(oldNum);
-        console.log(newNum);
+
         $(qtyFld).val(newNum);
     }
 
-    function loadCartData(callback){
+    function loadCartData(productId, callback){
         $.ajax({
-            url: "http://"+document.location.hostname+"/wp-content/themes/zabellos/ajax/woocommerce.php",
+            url: "http://"+document.location.hostname+"/wp-content/themes/zabellos/ajax/woocommerce.php?productId="+productId,
             context: document.body
         }).done(function(data) {
 
@@ -52,19 +106,27 @@
     }
 
     function updateCartForm(cart){
-        console.log('updateCartForm');
-        console.log(cart);
+
 
         $('#cart-subtotal').children('td').eq(1).html(cart.subtotal);
         $('#cart-tax-total').children('td').eq(1).html((cart.taxes)?cart.taxes:'$0.00');
         $('#cart-order-total').children('td').eq(1).html('<strong>'+cart.total+'</strong>');
 
-        if(cart.cartData.cart_contents_total > 3 ){
-            $('#get-discount-text').hide();
+
+        if(cart.discount_options){
+            if(Number(cart.quantity) >= Number(cart.discount_options.quantity)){
+                $('#get-discount-text').addClass('hide');
+            }
+            else{
+                $('#get-discount-quantity').html(Number(cart.discount_options.quantity) - Number(cart.quantity));
+                console.log($('#get-discount-text'));
+                $('#get-discount-text').removeClass('hide');
+            }
         }
         else{
-            $('#get-discount-text').show();
+            
         }
+
 
     }
 
@@ -82,6 +144,11 @@
     function addProductBlock(){
         var block = $('.block-1').get(0).outerHTML;
         $(block).insertBefore($('.block-2'));
+    }
+    
+    function updatePrices(newPrice, a, callback){
+        $('div.pull-right.pair-glyph > p').html(newPrice);
+        callback(a);
     }
 
 
@@ -105,7 +172,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-wc_print_notices();
+//wc_print_notices();
 
 do_action( 'woocommerce_before_cart' ); ?>
 
@@ -118,8 +185,19 @@ do_action( 'woocommerce_before_cart' ); ?>
         </div>
 
 		<?php
+    
+    $current_total = 0;
+    $original_total = 0;
+    
+    
 		foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
-			$_product     = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+      
+      
+      $current_total += $cart_item['line_total'];      
+      
+			$_product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+
+
 			$product_id   = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
 
 			if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
@@ -133,7 +211,10 @@ do_action( 'woocommerce_before_cart' ); ?>
 
                 <?php
                 //Products loop
-                for($i = 1; $i <= $cart_item['quantity']; $i++){?>
+                for($i = 1; $i <= $cart_item['quantity']; $i++){
+                  $original_total += $_product->price;
+                  
+                  ?>
                     <div class="block-1 clearfix padding-top-bottom-25">
                         <div class="pull-left">
                             <p class="h4">1 pair</p>
@@ -146,42 +227,66 @@ do_action( 'woocommerce_before_cart' ); ?>
                                 //Product Price
                                 echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
                                 ?></p>
-                            <a href="#" onclick="return removeProduct(this, '<?php echo $cart_item_key?>');" class="remove-item-btn color-c8 h3 " title="Remove this item"><span class="glyphicon glyphicon-remove-circle"></span></a>
+                            <a href="#" onclick="return removeProduct(this, '<?php echo $cart_item_key?>', <?php echo $_product->id?>);" class="remove-item-btn color-c8 h3 " title="Remove this item"><span class="glyphicon glyphicon-remove-circle"></span></a>
                         </div>
                     </div>
                 <?php
                 }
 			}
+      
 		}
 
 		?>
 
 
         <div class="block-2 padding-right-40 padding-top-bottom-25 clearfix">
-            <button type="button" class="btn btn-primary pull-left" onclick="addProduct();">Add another pair</button>
+            <button type="button" class="btn btn-primary pull-left" onclick="addProduct(this, null, <?php echo $_product->id?>);">Add another pair</button>
+            
+            <?php 
+            
+            
+            $product_discount_options = product_discount_options($_product->id);
+            
+            if($product_discount_options){
+              if($cart_item['quantity'] < $product_discount_options->quantity){
 
-            <?php if($cart_item['quantity'] == 1):?>
-                <p id="get-discount-text" class="pull-right">Add another 2 pair to <span class="text-success">get discount!</span></p>
-            <?php endif;?>
-
+                  $disc_message_cls = '';
+              } else {
+                  $disc_message_cls = 'hide';
+              }
+            }
+            ?>
+            <p id="get-discount-text" class="pull-right <?php echo $disc_message_cls?>">Add another <span id="get-discount-quantity"><?php echo ($product_discount_options->quantity - $cart_item['quantity']) ?></span> pair to <span class="text-success">get discount!</span></p>
 
         </div>
-
-        <!--<div class="block-3 padding-right-40 padding-top-bottom-25 clearfix h4">
+        <?php
+          //calculate discount
+          if($original_total > $current_total){
+            $discount = $original_total - $current_total;
+            $discount_info_cls = '';
+          }
+          else{
+            $discount = 0;
+            $discount_info_cls = 'hide';
+          }
+        
+        ?>
+        
+        <div class="block-3 padding-right-40 padding-top-bottom-25 clearfix h4 <?php echo $discount_info_cls?>">
             <p class="pull-left">You save with your order:</p>
-            <p class="pull-right text-success">-$19.00</p>
-        </div>-->
+            <p class="pull-right text-success">$<?php echo number_format($discount, 2);?></p>
+        </div>
 
         <div class="block-4 padding-right-40 padding-top-bottom-25">
             <p class="h4">Would you like shipping boxes mailed to you?</p>
             <div class="radio">
                 <label>
-                    <input type="radio" name="options" value="option1" checked>Yes, please send me FREE boxes
+                    <input type="radio" name="billing_shipping_boxes" value="yes" checked>Yes, please send me FREE boxes
                 </label>
             </div>
             <div class="radio">
                 <label>
-                    <input type="radio" name="options" value="option2">No, I will use my own boxes
+                    <input type="radio" name="billing_shipping_boxes" value="no">No, I will use my own boxes
                 </label>
             </div>
         </div>
@@ -225,7 +330,7 @@ do_action( 'woocommerce_before_cart' ); ?>
     </div>
 
     <p>
-        <a href="<?php echo home_url()?>/checkout/" class="btn btn-danger pull-right">Continue checkout</a>
+        <a id="continue_checkout_button" href="<?php echo home_url()?>/checkout/?billing_shipping_boxes=yes" class="btn btn-danger pull-right">Continue checkout</a>
     </p>
 
 </form>
