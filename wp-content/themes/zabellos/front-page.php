@@ -12,6 +12,7 @@ get_header();
             <div class="col-xs-12">
                 <div class="row">
                     <div class="home-slaider">
+                        
                         <div class='slider-viewport'>
                             <?php global $postID; $postFields = get_fields($postID);?>
                             <ul class='slidewrapper' data-current=0>
@@ -29,7 +30,7 @@ get_header();
                                 ?>
                             </ul>
                         </div>
-
+                      
                         <div class="home-slider-pagination">
                             <div class="home-paginations-a">
                                 <a class="prev">&lsaquo;</a>

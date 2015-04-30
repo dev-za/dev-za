@@ -28,7 +28,13 @@ input, button, select, textarea {
 }
 a {cursor:pointer; text-decoration:none; color:#4879ab;}
 
-.container {width:auto; min-width:640px; padding-left:35px; padding-right:35px;}
+.container {width:auto; 
+/*
+  min-width:640px; 
+*/
+  padding-left:35px; 
+  padding-right:35px;
+  }
 
 @media (min-width: 992px) {
   .container {
@@ -77,7 +83,9 @@ a.logo {
 }
 .navbar-default {
 	background:#ffffff;
+/*
 	min-width:640px;
+*/
 }
 .navbar-default .navbar-nav > li {
 	display:block;
@@ -114,7 +122,7 @@ header .navbar-collapse.in {
 .navbar-collapse {
 	background:#4879ab;
 	position:fixed;
-	top:95px;
+	top:110px;
 	left:0;
 	right:0;
 	bottom:0;
@@ -136,7 +144,10 @@ button.navbar-toggle {
 }
 .navbar-toggle {
 	margin-top:25px;
+/*
 	margin-right:0;
+*/
+	margin-right: -5px;
 }
 @media(min-width:992px) {
 	.navbar-default .navbar-nav > li > a , .navbar-default .navbar-link {
@@ -297,8 +308,12 @@ button.navbar-toggle {
 .slider-viewport{
     margin: 0 auto;
     /*width: 984px;*/
+/*
     width: 938px;
+*/
+/*
     height: 658px;
+*/
     overflow: hidden;
     position: relative;
 }
@@ -361,7 +376,9 @@ footer {
 	margin-top:80px;
 	padding:15px 0 10px;
 	background:#ffffff;
+/*
 	min-width:640px;
+*/
 }
 footer.gallery-footer {
 	padding-top:45px;
