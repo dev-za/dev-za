@@ -70,12 +70,17 @@ a.logo {
 .navbar-brand {
 	margin-top:15px;
 	margin-bottom:15px;
+/*
 	width:252px;
+*/
 	height:63px;
 	padding: 0;
 	display:block;
 	margin-left:auto !important;
-	margin-right:auto !important;	
+	margin-right:auto !important;
+/*
+  margin-left: -20px !important;
+*/
 }
  .navbar-brand img{
 	text-align:center;
@@ -307,13 +312,7 @@ button.navbar-toggle {
 
 .slider-viewport{
     margin: 0 auto;
-    /*width: 984px;*/
-/*
-    width: 938px;
-*/
-/*
     height: 658px;
-*/
     overflow: hidden;
     position: relative;
 }
@@ -325,12 +324,8 @@ button.navbar-toggle {
     margin: 0;
     padding: 0;
 }
-.slide{
-    /*width: 984px;*/
-    /*height: 658px;*/
-    width: 938px;
+.slide {
     height: 627px;
-    /*float: left;*/
     list-style: none;
     margin: 0;
     padding: 0;
@@ -849,12 +844,18 @@ a.comment span {
 .content-how-it-works img{
 	
 	margin-top:90px;
+/*
 	display:none;
+*/
 }
 .how-back-mobile {
+/*
 	background:url(../images/how-it-works-mobile.png) no-repeat;
+*/
+/*
 	width:575px;
 	height:949px;
+*/
 	margin:0 auto;
 }
 

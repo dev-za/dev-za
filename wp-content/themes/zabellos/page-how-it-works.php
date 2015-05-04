@@ -11,7 +11,11 @@ get_header(); ?>
                         <?php if($postFields && isset($postFields['content_images'])){?>
                             <?php foreach($postFields['content_images'] as $index=>$image) {?>
                             <?php //AKA: нужно убрать прописывание ширины ?>
-                                <img src="<?php echo $image['image']['url'];?>" alt="" class="img-responsive"/>
+
+
+                                <img src="<?php echo $image['image']['url'];?>" width="400" height="400" alt="" class="img-responsive"/>
+
+
                             <?php } ?>
                         <?php } ?>
                     </div>

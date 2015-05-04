@@ -1,8 +1,10 @@
 $(document).ready(function() {
-    //var slideWidth = 984;
+    var defaultSlideWidth = 938;
+    var defaultSlideWidth = 627;
     var slideWidth = $('.home-content > .container').width();
-    var homePaginationaEidth = $('.home-paginations-a').width();
-
+    var homePaginationWidth = $('.home-paginations-a').width();
+    $('li.slide').width(slideWidth);
+    
     //top slide
     //AKA: а разве нельзя сделать определение ширины на которую нужно сместиться?
     $('li.slide:nth-child(2)').css('margin-top', -627);
@@ -15,7 +17,7 @@ $(document).ready(function() {
         containment: '.slider-viewport',
         drag: function(event, ui){
             shift = ui.offset.left - startPos.left;
-            var newWidth = slideWidth + shift + homePaginationaEidth/2;
+            var newWidth = slideWidth + shift + homePaginationWidth/2;
             $('li.slide:nth-child(2)').width(newWidth);
         }
     });
